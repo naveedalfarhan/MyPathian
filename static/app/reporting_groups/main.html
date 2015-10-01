@@ -1,0 +1,225 @@
+<div class="padded-container">
+    <div class="row">
+        <div saved-report-configuration report-type="group" report-nodes="nodes.selectedNodes" report-model="model" selected-config="selectedConfig"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div style="border: thin solid darkgray; max-height: 150px; min-height:150px;overflow: scroll;">
+                <ul>
+                    <li style="list-style: none" ng-repeat="group in nodes.forceSelectedNodes" ng-bind="group.name"></li>
+                </ul>
+            </div>
+            <div style="border: thin solid darkgray; max-height: 450px; overflow: scroll;">
+                <div group-tree k-options="treeOptions" ng-model="nodes.selectedNodes" selection-style="multiple"></div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <form ng-submit="submit()" class="form-horizontal">
+                <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="errorMessage"></p>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="rReportYear">Report Year</label>
+                    <div class="col-md-3">
+                        <input id="rReportYear" ng-model="model.report_year" class="form-control input-md"/>
+                    </div>
+                    <label class="col-md-3 control-label" for="rBenchmarkYear">Benchmark Year</label>
+                    <div class="col-md-3">
+                        <input id="rBenchmarkYear" ng-model="model.benchmark_year" class="form-control input-md"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="rStartMonth">Start Month</label>
+                    <div class="col-md-3">
+                        <select id="rStartMonth" ng-model="model.start_month" class="form-control">
+                            <option selected="selected" value='1'>January</option>
+                            <option value='2'>February</option>
+                            <option value='3'>March</option>
+                            <option value='4'>April</option>
+                            <option value='5'>May</option>
+                            <option value='6'>June</option>
+                            <option value='7'>July</option>
+                            <option value='8'>August</option>
+                            <option value='9'>September</option>
+                            <option value='10'>October</option>
+                            <option value='11'>November</option>
+                            <option value='12'>December</option>
+                        </select>
+                    </div>
+                    <label class="col-md-3 control-label" for="rEndMonth">End Month</label>
+                    <div class="col-md-3">
+                        <select id="rEndMonth" ng-model="model.end_month" class="form-control">
+                            <option value='1'>January</option>
+                            <option value='2'>February</option>
+                            <option value='3'>March</option>
+                            <option value='4'>April</option>
+                            <option value='5'>May</option>
+                            <option value='6'>June</option>
+                            <option value='7'>July</option>
+                            <option value='8'>August</option>
+                            <option value='9'>September</option>
+                            <option value='10'>October</option>
+                            <option value='11'>November</option>
+                            <option selected="selected" value='12'>December</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="rComparisonType">Comparison Type</label>
+                    <div class="col-md-3">
+                        <select id="rComparisonType" ng-model="model.comparison_type" class="form-control" >
+                            <option value="temp" selected="selected">Temp</option>
+                            <option value="dewpt">Dewpt</option>
+                            <option value="enthalpy">Enthalpy</option>
+                        </select>
+                    </div>
+                    <label class="col-md-3 control-label" for="rDemandType">Demand Type</label>
+                    <div class="col-md-3">
+                        <select id="rDemandType" ng-model="model.demand_type" class="form-control">
+                            <option value="all" selected="selected">All</option>
+                            <option value="peak">Peak</option>
+                            <option value="offpeak">Offpeak</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="rAccountType">Account Type</label>
+                    <div class="col-md-3">
+                        <select id="rAccountType" ng-model="model.account_type" class="form-control">
+                            <option value="all" selected="selected">All</option>
+                            <option value="electric">Electric</option>
+                            <option value="gas">Gas</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6" ng-show="!advancedOptions">
+                        <div class="col-md-12" style="padding-bottom: 4px">
+                            <span class="col-md-12"></span>
+                            <a href ng-click="advancedOptions = true">Show Advanced Search Options</a>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <button type="button" class="btn btn-primary col-md-6" ng-click="exportToPdf()">Export to PDF</button>
+                        <button type="submit" class="btn btn-primary col-md-6" value="submit" ng-hide="model.report_type == 'variance'">Run Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="advancedOptions">
+                    <label class="col-md-3 control-label" for="rReportType">Report Type</label>
+                    <div class="col-md-3">
+                        <select id="rReportType" ng-model="model.report_type" class="form-control">
+                            <option value="consumption" selected="selected">Consumption Chart</option>
+                            <option value="text">Consumption Text</option>
+                            <option value="kvar">Kvar</option>
+                            <option value="kva">Kva</option>
+                            <option value="powerfactor">Power Factor</option>
+                            <option value="peak">Peak</option>
+                            <option value="variance">Variance</option>
+                        </select>
+                    </div>
+                    <label class="col-md-3 control-label" for="rElectricUnits">Electric Units</label>
+                    <div class="col-md-3">
+                        <select id="rElectricUnits" ng-model="model.electric_units" class="form-control">
+                            <option value="kwh" selected="selected">kWh</option>
+                            <option value="mwh">MWh</option>
+                            <option value="gwh">GWh</option>
+                            <option value="twh">TWh</option>
+                            <option value="kbtus">kBtus</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="advancedOptions">
+                    <label class="col-md-3 control-label" for="rGasUnits">Gas Units</label>
+                    <div class="col-md-3">
+                        <select id="rGasUnits" ng-model="model.gas_units" class="form-control">
+                            <option value="mcf" selected="selected">Mcf</option>
+                            <option value="mmbtus">MMBtus</option>
+                            <option value="therms">Therms</option>
+                            <option value="cf">cf</option>
+                        </select>
+                    </div>
+                    <label class="col-md-3 control-label" for="rBtuUnits">Btu Units</label>
+                    <div class="col-md-3">
+                        <select id="rBtuUnits" ng-model="model.btu_units" class="form-control">
+                            <option value="mmbtus" selected="selected">MMBtus</option>
+                            <option value="kbtus">kBtus</option>
+                            <option value="btus">Btus</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6" ng-show="advancedOptions">
+                        <div class="col-md-12" style="padding-bottom: 4px">
+                            <span class="col-md-3"></span>
+                            <a href ng-click="advancedOptions = false">Hide Advanced Search Options</a>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <button type="button" class="btn btn-primary col-md-6" ng-click="exportToPdf()">Export to PDF</button>
+                        <button type="submit" class="btn btn-primary col-md-6" value="submit" ng-hide="model.report_type == 'variance'">Run Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+            </form>
+            <div ng-if="energySummaryTableModel">
+                <div class="col-md-12">
+                    <div reporting-energy-summary-table="energySummaryTableModel"></div>
+                </div>
+            </div>
+
+            <div ng-if="intensityModel">
+                <div class="col-md-12">
+                    <div reporting-intensity-chart="intensityModel"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="reportNodes.length > 0 && !textReportModel">
+        <div class="col-md-12">
+            <select ng-model="model.selectedGroup" ng-options="group.id as group.name for group in reportNodes"></select>
+        </div>
+    </div>
+
+    <div class="row" ng-if="totalEnergyModel">
+        <div class="col-md-6">
+            <div reporting-consumption-chart="totalEnergyModel"></div>
+        </div>
+        <div class="col-md-6">
+            <div reporting-consumption-chart="totalEnergyModel" difference="true"></div>
+        </div>
+    </div>
+
+    <div ng-repeat="row in accountChartRows" class="row">
+        <div class="col-md-6">
+            <p style="font-weight:bold">Account: {{row.name}}</p>
+            <div reporting-consumption-chart="row.model"></div>
+        </div>
+        <div class="col-md-6">
+            <p style="font-weight:bold">Account: {{row.name}}</p>
+            <div reporting-consumption-chart="row.model" difference="true"></div>
+        </div>
+    </div>
+    <div class="row" ng-if="textReportModel">
+        <div class="col-md-12">
+            <div text-report="textReportModel" report-type="group"></div>
+        </div>
+    </div>
+    <div class="row" ng-if="peakReportModel">
+        <div class="col-md-12">
+            <div peak-report="peakReportModel" report-type="group"></div>
+        </div>
+    </div>
+</div>
+
+<div id="loader" class="dim" ng-show="exporting">
+    <span class="load" ng-hide="pdfurl">
+        Loading...<br/>
+        <img class="load" src="/static/css/loadingGif.gif" alt="Loading..." height="150" width="150"/>
+    </span>
+    <div id="link" ng-show="pdfurl">
+        <a ng-href="{{pdfurl}}" target="_blank" ng-click="openPdf()">Click to open PDF</a>
+    </div>
+</div>

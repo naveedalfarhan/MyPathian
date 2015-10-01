@@ -1,0 +1,108 @@
+<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="message"></p>
+        <fieldset>
+            <legend>Meeting Info</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mTitle">Title</label>
+                <div class="col-md-4">
+                    <input id="mTitle" ng-model="model.title" ng-required="true" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mLocation">Location</label>
+                <div class="col-md-4">
+                    <input id="mLocation" ng-model="model.location" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mDate">Date</label>
+                <div class="col-md-4">
+                    <input id="mDate" type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened" ng-model="model.date" datepicker-options="dateOptions" close-text="Close"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mDescription">Description</label>
+                <div class="col-md-4">
+                    <input id="mDescription" ng-model="model.description" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mMeetingType">Meeting Type</label>
+                <div class="col-md-4">
+                    <select id="mMeetingType" ng-model="model.meeting_type_id" ng-options="item.id as item.name for item in meetingTypes">
+                        <option value="">None</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mProject">Project</label>
+                <div class="col-md-4">
+                    <select id="mProject" ng-model="model.project_id" ng-options="item.id as item.name for item in projects">
+                        <option value="">None</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mGroup">Group</label>
+                <div class="col-md-4">
+                    <div id="mGroup" single-picker="group" single-picker-options="groupGridOptions" ng-required="true" single-picker-key-prop="id" single-picker-caption-prop="name"></div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Contacts</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mCalledBy">Called By</label>
+                <div class="col-md-4">
+                    <div id="mCalledBy" single-picker="calledby" single-picker-options="contactGridOptions" ng-required="true" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mNoteTaker">Note Taker</label>
+                <div class="col-md-4">
+                    <div id="mNoteTaker" single-picker="notetaker" single-picker-options="contactGridOptions" ng-required="true" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mFacilitator">Facilitator</label>
+                <div class="col-md-4">
+                    <div id="mFacilitator" single-picker="facilitator" single-picker-options="contactGridOptions" ng-required="true" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mTimeKeeper">Time Keeper</label>
+                <div class="col-md-4">
+                    <div id="mTimeKeeper" single-picker="timekeeper" single-picker-options="contactGridOptions" ng-required="true" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Attendees</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mAttendees">Attendees</label>
+                <div class="col-md-6">
+                    <div id="mAttendees" multi-picker="attendees" multi-picker-options="contactGridOptions" multi-picker-key-prop="id" multi-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Notes</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="mNotes">Notes</label>
+                <div class="col-md-6">
+                    <textarea id="mNotes" ck-editor ng-model="model.notes"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-default" value="Cancel" ng-click="cancel()">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

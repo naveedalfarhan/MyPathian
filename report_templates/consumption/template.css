@@ -1,0 +1,95 @@
+body#report{
+	background-color:white;
+	margin-bottom:2px;
+}
+
+body#report #reportcontent{
+	width:1000px;
+}
+
+#data-table{
+	border-collapse: collapse;
+	page-break-after: always;
+    width:990px;
+}
+#data-table tr{
+	page-break-inside: avoid;
+	display:table-row;
+}
+
+#data-table tr.normal{
+	background-color:white;
+}
+
+#data-table tr.subtotal{
+	background-color:lightgreen;
+}
+
+#data-table tr.total{
+	background-color:green;
+	border-bottom: 2px solid black;
+    color: white;
+}
+
+#data-table tr td{
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
+
+#data-table tr th{
+	margin: 0;
+	padding: 0;
+	cell-padding: 0;
+	background-color:blue;
+	color: white;
+	font-weight: bold;
+	border: 1px solid black;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
+
+#data-table tr{
+	background-color: white;
+	text-align: center;
+}
+
+#intensitytable tr{
+	vertical-align:top;
+}
+
+#intensityinfo{
+	width:300px;
+	vertical-align: middle;
+}
+
+#intensitychart{
+	width:700px;	
+}
+
+#intensitychart div.chart{
+	width:700px;
+	margin-top:-75px;
+}
+
+/*
+.chart {
+	width: 400px;
+}
+*/
+
+.div_table_height {
+	page-break-inside:avoid;
+	height: auto;
+	vertical-align:middle;
+}
+.div_table_height .info_div {
+	display:inline-block;
+	vertical-align:middle;
+	width: 275px;
+}
+.div_table_height .chart_div {
+	display:inline-block;
+	vertical-align:middle;
+	width: 350px;
+	height: 100%;
+}

@@ -1,0 +1,49 @@
+<div class="pat-container">
+    <script type="text/ng-template" id="resetScheduleModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Reset Schedule</h3>
+        </div>
+        <div class="modal-body">
+            <label for="raf-name" class="pat-form-label">Name:</label>
+            <input type="text" id="raf-name" class="pat-form-field pat-form-field-stretch" ng-model="data.name"/>
+
+            <div class="pat-table-container">
+                <table>
+                    <tr class="pat-rs-table-row">
+                        <td><input class="pat-rs-table-input" type="text" ng-model="data.header1" /></td>
+                        <td><input class="pat-rs-table-input" type="text" ng-model="data.header2" /></td>
+                    </tr>
+                    <tr class="pat-rs-table-row">
+                        <td><input class="pat-rs-table-input" type="text" ng-model="data.row1val1" /></td>
+                        <td><input class="pat-rs-table-input" type="text" ng-model="data.row1val2" /></td>
+                    </tr>
+                    <tr class="pat-rs-table-row">
+                        <td><input class="pat-rs-table-input" type="text" ng-model="data.row2val1" /></td>
+                        <td><input class="pat-rs-table-input" type="text" ng-model="data.row2val2" /></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <h3>Reset Schedules</h3>
+
+    <span ng-click="newResetSchedule()" class="pat-hyperlink">Create New</span>
+
+    <hr/>
+
+    <ul class="pat-list">
+        <li class="pat-list-item" ng-repeat="resetSchedule in resetSchedules | orderBy: 'name'">
+            <div class="pat-label"><strong>{{resetSchedule.name}}</strong></div>
+            <div class="pat-icons">
+                <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editResetSchedule(resetSchedule)"></span>
+                <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteResetSchedule(resetSchedule)"></span>
+            </div>
+            <div class="clear"></div>
+        </li>
+    </ul>
+</div>

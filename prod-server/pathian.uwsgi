@@ -1,0 +1,6 @@
+import sys, os
+
+print("starting pathian server")
+sys.path.insert(0, "/pathian/site")
+os.chdir("/pathian/site")
+from app_prod_server import application

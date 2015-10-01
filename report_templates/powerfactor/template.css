@@ -1,0 +1,25 @@
+body#report{
+	background-color:white;
+	margin-bottom:2px;
+}
+
+body#report #reportcontent{
+	width:1000px;
+}
+
+.div_table_height {
+	page-break-inside:avoid;
+	height: auto;
+	vertical-align:middle;
+}
+.div_table_height .info_div {
+	display:inline-block;
+	vertical-align:middle;
+	width: 275px;
+}
+.div_table_height .chart_div {
+	display:inline-block;
+	vertical-align:middle;
+	width: 350px;
+	height: 100%;
+}

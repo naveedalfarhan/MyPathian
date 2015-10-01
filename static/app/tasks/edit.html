@@ -1,0 +1,86 @@
+<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="message"></p>
+        <fieldset>
+            <legend>Task Info</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tName">Name</label>
+                <div class="col-md-4">
+                    <input id="tName" ng-model="model.name" ng-required="true" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tDescription">Description</label>
+                <div class="col-md-4">
+                    <textarea id="tDescription" ng-model="model.description" class="form-control input-md"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tBudgetYear">Budget Year</label>
+                <div class="col-md-4">
+                    <input id="tBudgetYear" ng-model="model.budget_year" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tEstimatedCost">Estimated Cost ($)</label>
+                <div class="col-md-4">
+                    <input id="tEstimatedCost" ng-model="model.estimated_cost" ng-required="true" class="form-control input-md"/>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Task Detail</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tPriority">Priority</label>
+                <div class="col-md-4">
+                    <select id="tPriority" ng-model="model.priority_id" ng-options="item.id as item.name for item in priorities"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tStatus">Status</label>
+                <div class="col-md-4">
+                    <select id="tStatus" ng-model="model.status_id" ng-options="item.id as item.name for item in statuses"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tType">Type</label>
+                <div class="col-md-4">
+                    <select id="tType" ng-model="model.type_id" ng-options="item.id as item.name for item in types"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tAcceptedDate">Accepted Date</label>
+                <div class="col-md-4">
+                    <input id="tAcceptedDate" ng-model="model.accepted_date" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions" close-text="Close"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tStartDate">Start Date</label>
+                <div class="col-md-4">
+                    <input id="tStartDate" ng-model="model.start_date" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions" close-text="Close"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tCompletedDate">Completed Date</label>
+                <div class="col-md-4">
+                    <input id="tCompletedDate" ng-model="model.completed_date" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions" close-text="Close"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="tAssignedTo">Assigned To</label>
+                <div class="col-md-6">
+                    <div id="tAssignedTo" single-picker="assigned_to" single-picker-options="contactGridOptions" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="cancel()" class="btn btn-default" value="Cancel">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

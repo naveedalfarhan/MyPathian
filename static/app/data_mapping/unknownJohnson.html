@@ -1,0 +1,34 @@
+<div class="padded-container">
+    <p>Unknown Johnson points</p>
+    <p><a href="/api/data_mapping/unknownJohnson/excel">Download spreadsheet</a></p>
+    <p><a href="javascript:void(0)" ng-click="showUploadForm=true">Upload spreadsheet</a></p>
+    <div ng-show="showUploadForm">
+        <form data-file-upload="fileUploadOptions">
+            <div ng-hide="uploadResult">
+                <!--<button class="fileinput-button">-->
+                    <span>Browse</span>
+                    <input type="file" name="file">
+                <!--</button>-->
+                <ul>
+                    <li data-ng-repeat="file in queue" data-ng-bind="file.name"></li>
+                </ul>
+                <button class="btn btn-primary" ng-click="submit()">Submit</button>
+            </div>
+            <div ng-show="uploadResult">
+                <p>{{uploadResult.added_mappings.length}} mappings added</p>
+                <p ng-show="uploadResult.johnson_point_already_mapped.length > 0">
+                    {{uploadResult.johnson_point_already_mapped.length}} mappings failed because the vendor points are
+                    already mapped to other Syrx numbers
+                </p>
+                <p ng-show="uploadResult.syrx_num_already_mapped.length > 0">
+                    {{uploadResult.syrx_num_already_mapped.length}} mappings failed because the Syrx numbers are
+                    already mapped to other vendor points
+                </p>
+                <p ng-show="uploadResult.syrx_num_doesnt_exist.length > 0">
+                    {{uploadResult.syrx_num_doesnt_exist.length}} mappings failed because the Syrx numbers do not exist
+                </p>
+            </div>
+        </form>
+    </div>
+    <div kendo-grid data-name="johnsonGrid" k-options="gridOptions"></div>
+</div>

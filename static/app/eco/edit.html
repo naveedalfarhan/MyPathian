@@ -1,0 +1,82 @@
+<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <p class="alert alert-danger" ng-show="sohwErrorMessage" ng-bind="message"></p>
+        <fieldset>
+            <legend>ECO Details</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eName">Name</label>
+                <div class="col-md-4">
+                    <input id="eName" ng-model="model.name" ng-required="true" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eDescription">Description</label>
+                <div class="col-md-4">
+                    <textarea id="eDescription" ng-model="model.description" class="form-control input-md"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eMemo">Memo</label>
+                <div class="col-md-4">
+                    <input id="eMemo" ng-model="model.memo" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eComments">Comments</label>
+                <div class="col-md-4">
+                    <textarea id="eComments" ng-model="model.comments" class="form-control input-md"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eProject">Project</label>
+                <div class="col-md-4">
+                    <div id="eProject" single-picker="project" single-picker-options="projectGridOptions" single-picker-key-prop="id" single-picker-caption-prop="name"></div>
+                </div>
+            </div>
+            <!--
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eEquipment">Equipment</label>
+                <div class="col-md-4">
+                    <select id="eEquipment" ng-model="model.equipment_id" ng-options="item.id as item.name for item in equipment"></select>
+                </div>
+            </div>
+            -->
+        </fieldset>
+        <fieldset>
+            <legend>ECO Goal</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eReductionGoal">Reduction Goal</label>
+                <div class="col-md-4">
+                    <input id="eReductionGoal" ng-required="true" ng-model="model.reduction_goal" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eReductionUnits">Reduction Units</label>
+                <div class="col-md-4">
+                    <input id="eReductionUnits" ng-model="model.reduction_units" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eOriginalDate">Original Date</label>
+                <div class="col-md-4">
+                    <input id="eOriginalDate" ng-required="true" ng-model="model.original_date" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions" close-text="Close"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="eCompletionGoal">Completion Goal</label>
+                <div class="col-md-4">
+                    <input id="eCompletionGoal" ng-required="true" ng-model="model.completion_goal" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions" close-text="Close"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+                </div>
+                 <div class="col-md-1">
+                    <button value="Cancel" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

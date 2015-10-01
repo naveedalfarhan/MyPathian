@@ -1,0 +1,7 @@
+<div class="container">
+    <p>Upload progress</p>
+    <div ng-repeat="upload in uploads">
+        <progressbar value="upload.percent" type="{{upload.progressType}}"><strong ng-bind="upload.progressMessage"></strong></progressbar>
+        <p ng-bind="upload.message"></p>
+    </div>
+</div>

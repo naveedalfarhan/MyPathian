@@ -1,0 +1,68 @@
+<div class="container">
+    <form name="form" ng-submit="next()" class="form-horizontal">
+        <fieldset>
+            <legend>Bronze reporting</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Account Name</label>
+                <p class="col-md-4 form-control-static" ng-bind="accountModel.name"></p>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Account Type</label>
+                <p class="col-md-4 form-control-static" ng-bind="accountType"></p>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.weatherstation.$invalid && form.weatherstation.$dirty }">
+                <label class="col-md-4 control-label" for="wsWeatherstation">Weather station</label>
+                <div class="col-md-4">
+                    <select id="wsWeatherstation" name="weatherstation" ng-options="ws.id as ws.name for ws in weatherstations" ng-model="accountModel.weatherstation_id" class="form-control input-md" required></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="wsTimezone">Time zone</label>
+                <div class="col-md-4">
+                    <select id="wsTimezone" ng-options="tz.name as tz.name for tz in timezones" ng-model="accountModel.timezone" class="form-control input-md" required></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Data format</label>
+                <div class="col-md-4 form-control-static">
+                    <label><input type="radio" ng-model="accountModel.uploadFormat" value="grid">Manually input</label>
+                    <br>
+                    <label><input type="radio" ng-model="accountModel.uploadFormat" value="energyStar">Upload Energy Star spreadsheet</label>
+                </div>
+            </div>
+            <div class="form-group" ng-show="accountModel.uploadFormat == 'grid'">
+                <label class="col-md-4 control-label" for="wsUnits">Units</label>
+                <div class="col-md-4">
+                    <select id="wsUnits" ng-options="u.id as u.name for u in units" ng-model="accountModel.units" class="form-control input-md" ng-required="accountModel.uploadFormat == 'grid'"></select>
+                </div>
+            </div>
+            <div class="form-group" ng-show="accountModel.uploadFormat == 'grid'">
+                <div class="col-md-8 col-md-offset-2">
+                    <div manual-energy-grid ng-model="accountModel.manualData"></div>
+                </div>
+            </div>
+            <div class="form-group" ng-show="accountModel.uploadFormat == 'energyStar'">
+                <label class="col-md-4 control-label">Upload</label>
+                <div class="col-md-4">
+                    <div file-upload-button ng-model="accountModel.energyStarData" class="btn btn-default"></div>
+                    <ul>
+                        <li ng-repeat="f in accountModel.energyStarData">{{f.name}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group" ng-show="accountModel.uploadFormat == 'energyStar'">
+                <label class="col-md-4 control-label" for="energyStarMeterName">Energy Star meter name</label>
+                <div class="col-md-4">
+                    <input name="energyStarMeterName" class="form-control input-md" ng-model="accountModel.meterName" ng-required="accountModel.uploadFormat == 'energyStar'">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <a class="btn btn-default" ng-href="{{backLink}}">Back</a>
+                    <button type="submit" class="btn btn-primary">Next</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

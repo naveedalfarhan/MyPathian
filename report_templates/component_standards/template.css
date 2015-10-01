@@ -1,0 +1,44 @@
+body#report{
+	background-color:white;
+	margin-bottom:2px;
+}
+
+body#report #reportcontent{
+	width:1000px;
+}
+
+#standardstable{
+	border-collapse: collapse;
+    width:990px;
+}
+
+#standardstable tr{
+	page-break-inside: avoid;
+	display:table-row;
+    background-color: white;
+    border-bottom: 2px solid black;
+}
+
+#standardstable tr td{
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+    text-align: left;
+}
+
+#standardstable tr th{
+	margin: 0;
+	padding: 0;
+	cell-padding: 0;
+	background-color:blue;
+	color: white;
+	font-weight: bold;
+	border: 1px solid black;
+}
+
+#standardschart{
+	width:700px;
+}
+
+.alt {
+    background-color: #d3d3d3 !important;
+}

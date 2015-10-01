@@ -1,0 +1,44 @@
+<div class="container">
+    <div kendo-splitter k-orientation="'horizontal'" k-panes="[{collapsible: true, size: '35%'}, { collapsible: false, size: '65%'}]" style="height:750px">
+        <div>
+            <div group-tree ng-model="model.selectedGroup" k-options="treeOptions" selection-style="single"></div>
+        </div>
+        <div>
+            <p ng-hide="model.selectedGroup">Select a group</p>
+            <div id="accountPane" ng-show="model.selectedGroup">
+                <h3>Accounts</h3>
+                <div id="accountGrid"></div>
+            </div>
+            <br/>
+            <div id="dateOptions" ng-show="model.selectedAccount" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="pStartDate">Start Date:</label>
+                    <div class="col-md-4">
+                        <input id="pStartDate" ng-required="true" ng-model="dateOptions.start_date"
+                               class="form-control input-md account-data-datepicker" datepicker-popup="{{format}}"
+                               datepicker-options="dateOptions" close-text="Close"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="pEndDate">End Date:</label>
+                    <div class="col-md-4">
+                        <input id="pEndDate" ng-required="true" ng-model="dateOptions.end_date"
+                               class="form-control input-md account-data-datepicker" datepicker-popup="{{format}}"
+                               datepicker-options="dateOptions" close-text="Close"/>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="dateOptions.start_date && dateOptions.end_date">
+                    <label class="col-md-4 control-label" for="pSearchButton"></label>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" id="pSearchButton" ng-click="findData()">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div id="dataGrid" ng-if="dataGridOptions">
+                <div>
+                    <div kendo-grid k-options="dataGridOptions.options" k-data-source="dataGridOptions.dataSource"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

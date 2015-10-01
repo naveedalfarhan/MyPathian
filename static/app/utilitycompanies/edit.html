@@ -1,0 +1,59 @@
+<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="message"></p>
+        <fieldset>
+            <legend>Edit Utility Company</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cName">Name</label>
+                <div class="col-md-4">
+                    <input id="cName" ng-model="model.name" ng-required="true" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cAddress1">Address 1</label>
+                <div class="col-md-4">
+                    <input id="cAddress1" ng-model="model.address1" ng-required="true" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cAddress2">Address 2</label>
+                <div class="col-md-4">
+                    <input id="cAddress2" ng-model="model.address2" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cCity">City</label>
+                <div class="col-md-4">
+                    <input id="cCity" ng-model="model.city" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cState">State</label>
+                <div class="col-md-4">
+                    <textarea id="cState" ng-model="model.state" class="form-control input-md"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cZip">Zip</label>
+                <div class="col-md-4">
+                    <input id="cZip" ng-model="model.zip" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Primary Contact</label>
+                <div class="col-md-4">
+                    <div single-picker="model.contact" ng-required="true" single-picker-options="contactGridOptions" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="cancel()" class="btn btn-default" value="Cancel">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

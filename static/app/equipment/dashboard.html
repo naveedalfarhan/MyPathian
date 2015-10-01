@@ -1,0 +1,499 @@
+﻿<div class="pat-container">
+    <h3>Group: {{viewModel.group.name}}</h3>
+    <h3>Equipment: {{model.name}}</h3>
+    <script type="text/ng-template" id="previewModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Preview</h3>
+        </div>
+        <div class="modal-body" ng-bind-html="content">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">Close</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="addParagraphModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Add Paragraph</h3>
+        </div>
+        <div class="modal-body">
+            <label for="category" class="pat-form-label">Category: </label>
+            <select id="category" class="form-control pat-form-field pat-form-field-stretch"
+                ng-change="categoryChanged()" 
+                ng-model="data.selectedCategory" 
+                ng-options="category.name for category in data.categories">
+            </select>
+
+            <label for="paragraph" class="pat-form-label">Paragraph: </label>
+            <select id="paragraph" class="form-control pat-form-field pat-form-field-stretch"
+                ng-model="data.selectedParagraph" 
+                ng-options="paragraph.title for paragraph in data.paragraphs"
+                ng-disabled="data.selectedCategory === null">
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" 
+                ng-click="ok()" 
+                ng-disabled="data.selectedParagraph === null">
+                OK
+            </button>
+            <button class="btn btn-warning" 
+                ng-click="cancel()">
+                Cancel
+            </button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="editModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Edit</h3>
+        </div>
+        <div class="modal-body">
+            <label for="paragraph-title" class="pat-form-label">Title:</label>
+            <input type="text" id="paragraph-title" class="pat-form-field pat-form-field-stretch" ng-model="data.title"/>
+            <textarea ck-editor ng-model="data.content"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="rafModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Create RAF Pressure</h3>
+        </div>
+        <div class="modal-body">
+            <label for="raf-name" class="pat-form-label">Name:</label>
+            <input type="text" id="raf-name" class="pat-form-field pat-form-field-stretch" ng-model="data.name"/>
+
+            <label for="raf-inlet" class="pat-form-label">Name:</label>
+            <input type="text" id="raf-inlet" class="pat-form-field pat-form-field-stretch" ng-model="data.inlet_pressure"/>
+
+            <label for="raf-discharge" class="pat-form-label">Name:</label>
+            <input type="text" id="raf-discharge" class="pat-form-field pat-form-field-stretch" ng-model="data.discharge_pressure"/>
+
+            <label for="raf-delta" class="pat-form-label">Name:</label>
+            <input type="text" id="raf-delta" class="pat-form-field pat-form-field-stretch" ng-model="data.delta_p"/>
+
+            <label for="raf-mixing" class="pat-form-label">Name:</label>
+            <input type="text" id="raf-mixing" class="pat-form-field pat-form-field-stretch" ng-model="data.mixing_box_pressure"/>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <div id="preview-window" kendo-window="previewWindow" k-title="'Preview'"
+            k-width="600" k-height="460" k-visible="false" k-modal="true">
+    </div>
+    <div class="row" ng-if="chartModel">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4 col-md-push-8">
+                    <label for="pointSelect">Equipment Point:</label>
+                    <select id="pointSelect" ng-model="chartModel.syrx_num" ng-options="num.num as num.name for num in viewModel.syrx_nums">
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12" equipment-consumption-table="tableModel"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="reportYear">Report Year:</label>
+                            <select id="reportYear" ng-model="chartModel.report_year" ng-options="year for year in years"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="comparisonYear">Comparison Year:</label>
+                            <select id="comparisonYear" ng-model="chartModel.comparison_year" ng-options="year for year in years"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="startMonth">Start Month:</label>
+                            <select id="startMonth" ng-model="chartModel.start_month">
+                                <option value='1'>January</option>
+                                <option value='2'>February</option>
+                                <option value='3'>March</option>
+                                <option value='4'>April</option>
+                                <option value='5'>May</option>
+                                <option value='6'>June</option>
+                                <option value='7'>July</option>
+                                <option value='8'>August</option>
+                                <option value='9'>September</option>
+                                <option value='10'>October</option>
+                                <option value='11'>November</option>
+                                <option value='12'>December</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="endMonth">End Month:</label>
+                            <select id="endMonth" ng-model="chartModel.end_month">
+                                <option value='1'>January</option>
+                                <option value='2'>February</option>
+                                <option value='3'>March</option>
+                                <option value='4'>April</option>
+                                <option value='5'>May</option>
+                                <option value='6'>June</option>
+                                <option value='7'>July</option>
+                                <option value='8'>August</option>
+                                <option value='9'>September</option>
+                                <option value='10'>October</option>
+                                <option value='11'>November</option>
+                                <option value='12'>December</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8" component-difference-chart chart-model="chartModel" ng-show="chartModel" type="equipment"></div>
+            </div>
+        </div>
+    </div>
+    <div kendo-tab-strip k-activate="tabActivated" k-animation="false">
+        <ul>
+            <li data-name="pointMappings" class="k-state-active">Vendor point mappings</li>
+            <li data-name="numericPoints">Numeric point management</li>
+            <li data-paragraph-type="CS">Control Sequences</li>
+            <li data-paragraph-type="AR">Acceptance Requirements</li>
+            <li data-paragraph-type="CR">Commissioning Requirements</li>
+            <li data-paragraph-type="FT">Functional Tests</li>
+            <li data-paragraph-type="DR">Demand Response</li>
+            <li data-paragraph-type="LC">Load Curtailment</li>
+            <li data-paragraph-type="MR">Maintenance Requirements</li>
+            <li data-paragraph-type="PR">Project Requirements</li>
+            <li data-paragraph-type="RR">Roles and Responsibilities</li>
+            <li data-paragraph-type="IS">Issues</li>
+            <li data-paragraph-type="TA">Tasks</li>
+            <li data-paragraph-type="RS">Reset Schedules</li>
+            <li data-paragraph-type="RA">RAF Pressures</li>
+        </ul>
+        <div class="pat-tab-content">
+            <h4>Mapped points</h4>
+            <div kendo-grid id="mappedPointsGrid" k-options="mappedPointsGridOptions"></div>
+            <br>
+
+            <h4>Unmapped points</h4>
+            <div kendo-grid id="unmappedPointsGrid" k-options="unmappedPointsGridOptions"></div>
+            <br>
+
+            <div ng-if="mappingPoint">
+                <p>Currently mapping: {{mappingPoint}}</p>
+                <div kendo-tab-strip>
+                    <ul>
+                        <li class="k-state-active">Johnson</li>
+                        <li>Fieldserver</li>
+                        <li>Siemens</li>
+                        <li>Invensys</li>
+                    </ul>
+                    <div>
+                        <div kendo-grid k-options="johnsonUnknownGridOptions"></div>
+                    </div>
+                    <div>
+                        <div kendo-grid k-options="fieldserverUnknownGridOptions"></div>
+                    </div>
+                    <div>
+                        <div kendo-grid k-options="siemensUnknownGridOptions"></div>
+                    </div>
+                    <div>
+                        <div kendo-grid k-options="invensysUnknownGridOptions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pat-tab-content">
+            <h4>Numeric points</h4>
+            <select ng-model="selectedNumericPoint" ng-options="p as p.component_point_num for p in numericPoints"></select>
+            <div ng-show="!!selectedNumericPoint">
+                <h4>Values</h4>
+                <div numeric-point-values-grid equipment-point-id="selectedNumericPoint.id"></div>
+            </div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Control Sequences</strong></div>
+            <span ng-click="addParagraphClicked('CS')" class="pat-hyperlink">Add</span>
+            <span ng-click="previewClicked('CS')" class="pat-hyperlink">Preview</span>
+            <hr/>
+            <div class="pat-component-list" ng-repeat="component in controlSequenceComponents | orderBy: 'componentName'">
+                <span class="pat-list-component">{{component.componentName}}</span>
+                <ul class="pat-list" ng-repeat="category in component.categories | orderBy: 'categoryName'">
+                    <li class="pat-list-category">{{category.categoryName}}</li>
+                    <li class="pat-list-item" ng-repeat="item in category.items | orderBy: 'sort_order'">
+                        <div class="pat-label"><strong>{{item.title}}</strong></div>
+                        <div class="pat-icons">
+                            <span title="Move Up" class="pat-icon glyphicon glyphicon-arrow-up" ng-click="moveItemUp(item)"></span>
+                            <span title="Move Down" class="pat-icon glyphicon glyphicon-arrow-down" ng-click="moveItemDown(item)"></span>
+                            <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editItem(item)"></span>
+                            <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteItem(item)"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Acceptance Requirements</strong></div>
+            <span ng-click="addParagraphClicked('AR')" class="pat-hyperlink">Add</span>
+            <span ng-click="previewClicked('AR')" class="pat-hyperlink">Preview</span>
+            <hr/>
+            <div class="pat-component-list" ng-repeat="component in acceptanceRequirementComponents | orderBy: 'componentName'">
+                <span class="pat-list-component">{{component.componentName}}</span>
+                <ul class="pat-list" ng-repeat="category in component.categories | orderBy: 'categoryName'">
+                    <li class="pat-list-category">{{category.categoryName}}</li>
+                    <li class="pat-list-item" ng-repeat="item in category.items | orderBy: 'sort_order'">
+                        <div class="pat-label"><strong>{{item.title}}</strong></div>
+                        <div class="pat-icons">
+                            <span title="Move Up" class="pat-icon glyphicon glyphicon-arrow-up" ng-click="moveItemUp(item)"></span>
+                            <span title="Move Down" class="pat-icon glyphicon glyphicon-arrow-down" ng-click="moveItemDown(item)"></span>
+                            <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editItem(item)"></span>
+                            <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteItem(item)"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Commissioning Requirements</strong></div>
+            <span ng-click="addParagraphClicked('CR')" class="pat-hyperlink">Add</span>
+            <span ng-click="previewClicked('CR')" class="pat-hyperlink">Preview</span>
+            <hr/>
+            <div class="pat-component-list" ng-repeat="component in commissioningRequirementComponents | orderBy: 'componentName'">
+                <span class="pat-list-component">{{component.componentName}}</span>
+                <ul class="pat-list" ng-repeat="category in component.categories | orderBy: 'categoryName'">
+                    <li class="pat-list-category">{{category.categoryName}}</li>
+                    <li class="pat-list-item" ng-repeat="item in category.items | orderBy: 'sort_order'">
+                        <div class="pat-label"><strong>{{item.title}}</strong></div>
+                        <div class="pat-icons">
+                            <span title="Move Up" class="pat-icon glyphicon glyphicon-arrow-up" ng-click="moveItemUp(item)"></span>
+                            <span title="Move Down" class="pat-icon glyphicon glyphicon-arrow-down" ng-click="moveItemDown(item)"></span>
+                            <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editItem(item)"></span>
+                            <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteItem(item)"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Functional Tests</strong></div>
+            <span ng-click="addParagraphClicked('FT')" class="pat-hyperlink">Add</span>
+            <span ng-click="previewClicked('FT')" class="pat-hyperlink">Preview</span>
+            <hr/>
+            <div class="pat-component-list" ng-repeat="component in functionalTestComponents | orderBy: 'componentName'">
+                <span class="pat-list-component">{{component.componentName}}</span>
+                <ul class="pat-list" ng-repeat="category in component.categories | orderBy: 'categoryName'">
+                    <li class="pat-list-category">{{category.categoryName}}</li>
+                    <li class="pat-list-item" ng-repeat="item in category.items | orderBy: 'sort_order'">
+                        <div class="pat-label"><strong>{{item.title}}</strong></div>
+                        <div class="pat-icons">
+                            <span title="Move Up" class="pat-icon glyphicon glyphicon-arrow-up" ng-click="moveItemUp(item)"></span>
+                            <span title="Move Down" class="pat-icon glyphicon glyphicon-arrow-down" ng-click="moveItemDown(item)"></span>
+                            <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editItem(item)"></span>
+                            <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteItem(item)"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Demand Response</strong></div>
+            <span ng-click="addParagraphClicked('DR')" class="pat-hyperlink">Add</span>
+            <span ng-click="previewClicked('DR')" class="pat-hyperlink">Preview</span>
+            <hr/>
+            <div class="pat-component-list" ng-repeat="component in demandResponseComponents | orderBy: 'componentName'">
+                <span class="pat-list-component">{{component.componentName}}</span>
+                <ul class="pat-list" ng-repeat="category in component.categories | orderBy: 'categoryName'">
+                    <li class="pat-list-category">{{category.categoryName}}</li>
+                    <li class="pat-list-item" ng-repeat="item in category.items | orderBy: 'sort_order'">
+                        <div class="pat-label"><strong>{{item.title}}</strong></div>
+                        <div class="pat-icons">
+                            <span title="Move Up" class="pat-icon glyphicon glyphicon-arrow-up" ng-click="moveItemUp(item)"></span>
+                            <span title="Move Down" class="pat-icon glyphicon glyphicon-arrow-down" ng-click="moveItemDown(item)"></span>
+                            <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editItem(item)"></span>
+                            <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteItem(item)"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Load Curtailment</strong></div>
+            <span ng-click="addParagraphClicked('LC')" class="pat-hyperlink">Add</span>
+            <span ng-click="previewClicked('LC')" class="pat-hyperlink">Preview</span>
+            <hr/>
+            <div class="pat-component-list" ng-repeat="component in loadCurtailmentComponents | orderBy: 'componentName'">
+                <span class="pat-list-component">{{component.componentName}}</span>
+                <ul class="pat-list" ng-repeat="category in component.categories | orderBy: 'categoryName'">
+                    <li class="pat-list-category">{{category.categoryName}}</li>
+                    <li class="pat-list-item" ng-repeat="item in category.items | orderBy: 'sort_order'">
+                        <div class="pat-label"><strong>{{item.title}}</strong></div>
+                        <div class="pat-icons">
+                            <span title="Move Up" class="pat-icon glyphicon glyphicon-arrow-up" ng-click="moveItemUp(item)"></span>
+                            <span title="Move Down" class="pat-icon glyphicon glyphicon-arrow-down" ng-click="moveItemDown(item)"></span>
+                            <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editItem(item)"></span>
+                            <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteItem(item)"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Maintenance Requirements</strong></div>
+            <span ng-click="addParagraphClicked('MR')" class="pat-hyperlink">Add</span>
+            <span ng-click="previewClicked('MR')" class="pat-hyperlink">Preview</span>
+            <hr/>
+            <div class="pat-component-list" ng-repeat="component in maintenanceRequirementComponents | orderBy: 'componentName'">
+                <span class="pat-list-component">{{component.componentName}}</span>
+                <ul class="pat-list" ng-repeat="category in component.categories | orderBy: 'categoryName'">
+                    <li class="pat-list-category">{{category.categoryName}}</li>
+                    <li class="pat-list-item" ng-repeat="item in category.items | orderBy: 'sort_order'">
+                        <div class="pat-label"><strong>{{item.title}}</strong></div>
+                        <div class="pat-icons">
+                            <span title="Move Up" class="pat-icon glyphicon glyphicon-arrow-up" ng-click="moveItemUp(item)"></span>
+                            <span title="Move Down" class="pat-icon glyphicon glyphicon-arrow-down" ng-click="moveItemDown(item)"></span>
+                            <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editItem(item)"></span>
+                            <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteItem(item)"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Project Requirements</strong></div>
+            <span ng-click="addParagraphClicked('PR')" class="pat-hyperlink">Add</span>
+            <span ng-click="previewClicked('PR')" class="pat-hyperlink">Preview</span>
+            <hr/>
+            <div class="pat-component-list" ng-repeat="component in projectRequirementComponents | orderBy: 'componentName'">
+                <span class="pat-list-component">{{component.componentName}}</span>
+                <ul class="pat-list" ng-repeat="category in component.categories | orderBy: 'categoryName'">
+                    <li class="pat-list-category">{{category.categoryName}}</li>
+                    <li class="pat-list-item" ng-repeat="item in category.items | orderBy: 'sort_order'">
+                        <div class="pat-label"><strong>{{item.title}}</strong></div>
+                        <div class="pat-icons">
+                            <span title="Move Up" class="pat-icon glyphicon glyphicon-arrow-up" ng-click="moveItemUp(item)"></span>
+                            <span title="Move Down" class="pat-icon glyphicon glyphicon-arrow-down" ng-click="moveItemDown(item)"></span>
+                            <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editItem(item)"></span>
+                            <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteItem(item)"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Roles and Responsibilities</strong></div>
+            <span ng-click="addParagraphClicked('RR')" class="pat-hyperlink">Add</span>
+            <span ng-click="previewClicked('RR')" class="pat-hyperlink">Preview</span>
+            <hr/>
+            <div class="pat-component-list" ng-repeat="component in responsibilityComponents | orderBy: 'componentName'">
+                <span class="pat-list-component">{{component.componentName}}</span>
+                <ul class="pat-list" ng-repeat="category in component.categories | orderBy: 'categoryName'">
+                    <li class="pat-list-category">{{category.categoryName}}</li>
+                    <li class="pat-list-item" ng-repeat="item in category.items | orderBy: 'sort_order'">
+                        <div class="pat-label"><strong>{{item.title}}</strong></div>
+                        <div class="pat-icons">
+                            <span title="Move Up" class="pat-icon glyphicon glyphicon-arrow-up" ng-click="moveItemUp(item)"></span>
+                            <span title="Move Down" class="pat-icon glyphicon glyphicon-arrow-down" ng-click="moveItemDown(item)"></span>
+                            <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editItem(item)"></span>
+                            <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteItem(item)"></span>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Issues</strong></div>
+            <select ng-model="selectedPredefinedIssue" ng-options="predefinedIssue.title for predefinedIssue in predefinedIssues"></select>
+            <button ng-click="addEquipmentIssue()">Add</button>
+            <button ng-click="createEquipmentIssue()">Create</button>
+            <hr/>
+            <ul class="pat-list">
+                <li class="pat-list-item" ng-repeat="issue in equipmentIssues | orderBy: 'title'">
+                    <div class="pat-label"><strong>{{issue.title}}</strong></div>
+                    <div class="pat-icons">
+                        <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editEquipmentIssue(issue)"></span>
+                        <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteEquipmentIssue(issue)"></span>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>Tasks</strong></div>
+            <select ng-model="selectedPredefinedTask" ng-options="predefinedTask.title for predefinedTask in predefinedTasks"></select>
+            <button ng-click="addEquipmentTask()">Add</button>
+            <button ng-click="createEquipmentTask()">Create</button>
+            <hr/>
+            <ul class="pat-list">
+                <li class="pat-list-item" ng-repeat="task in equipmentTasks | orderBy: 'title'">
+                    <div class="pat-label"><strong>{{task.title}}</strong></div>
+                    <div class="pat-icons">
+                        <span title="Edit" class="pat-icon glyphicon glyphicon-pencil" ng-click="editEquipmentTask(task)"></span>
+                        <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteEquipmentTask(task)"></span>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>RAF Pressures</strong></div>
+            <select ng-model="selectedResetSchedule" ng-options="resetSchedule.name for resetSchedule in availableResetSchedules"></select>
+            <button ng-click="addResetSchedule()">Add</button>
+            <hr/>
+            <ul class="pat-list">
+                <li class="pat-list-item" ng-repeat="resetSchedule in resetSchedules">
+                    <div class="pat-label"><strong>{{resetSchedule.name}}</strong></div>
+                    <div class="pat-icons">
+                        <span title="Delete" class="pat-icon glyphicon glyphicon-remove" ng-click="deleteResetSchedule(resetSchedule)"></span>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="pat-tab-content">
+            <div class="pat-list-title"><strong>RAF Pressures</strong></div>
+            <span ng-click="newRafClicked()" class="pat-hyperlink">Add</span>
+            <hr/>
+            <div class="pat-table-container">
+                <table>
+                <tr>
+                    <td class="raf-name">Name</td>
+                    <td class="raf-inlet">Inlet</td>
+                    <td class="raf-discharge">Discharge</td>
+                    <td class="raf-delta">Delta_P</td>
+                    <td class="raf-mixing-box">Mixing Box</td>
+                    <td class="raf-actions"></td>
+                </tr>
+                <tr ng-repeat="raf in rafPressures | orderBy: 'name'">
+                    <td>{{raf.name}}</td>
+                    <td>{{raf.inlet_pressure}}</td>
+                    <td>{{raf.discharge_pressure}}</td>
+                    <td>{{raf.delta_p}}</td>
+                    <td>{{raf.mixing_box_pressure}}</td>
+                    <td><span ng-click="deleteRaf(raf.id)" class="pat-hyperlink">Delete</span></td>
+                </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>

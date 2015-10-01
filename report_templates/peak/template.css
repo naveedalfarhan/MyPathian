@@ -1,0 +1,76 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+tr{
+    page-break-inside: avoid !important;
+}
+
+body#report{
+	background-color:white;
+    width:800px;
+    text-align: center;
+}
+
+.report-container {
+    padding-top:10px;
+    page-break-after: always;
+}
+
+.data-table{
+    width:800px;
+    border: 2px solid black;
+}
+.data-table > tbody > tr{
+	display:table-row;
+}
+
+.table-info{
+    font-weight: bold;
+}
+
+.data-table > tbody > tr > td{
+    text-align: center;
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+.inner-data-table{
+    text-align: center;
+    border-collapse: collapse;
+    margin-bottom: 35px;
+}
+
+.inner-data-table > tbody > tr > th{
+    border-top: 2px solid black;
+}
+
+.inner-data-table > tbody > tr{
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    display: table-row;
+}
+
+.inner-data-table > tbody > tr:nth-child(even){
+    background-color: #ddd;
+}
+
+.inner-data-table > tbody > tr > th{
+    background-color: #aaa;
+    width: 150px;
+}
+
+.inner-data-table-container{
+    padding-left: 135px;
+}
+
+.inner-data-table > tr > td{
+    font-weight: normal !important;
+    width: 150px;
+}

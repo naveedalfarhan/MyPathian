@@ -1,0 +1,79 @@
+<div class="container">
+    <form name="form" ng-submit="next()" class="form-horizontal">
+        <fieldset>
+            <legend>Bronze reporting</legend>
+            <div class="form-group" ng-class="{'has-error': form.name.$invalid && form.name.$dirty }">
+                <label class="col-md-4 control-label" for="wsName">Organization Name</label>
+                <div class="col-md-4">
+                    <input id="wsName" name="name" ng-model="model.name" class="form-control input-md" required />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.contact_name.$invalid && form.contact_name.$dirty }">
+                <label class="col-md-4 control-label" for="wsContactName">Contact name</label>
+                <div class="col-md-4">
+                    <input id="wsContactName" name="contact_name" ng-model="model.contact_name" class="form-control input-md" required />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.title.$invalid && form.title.$dirty }">
+                <label class="col-md-4 control-label" for="wsTitle">Title</label>
+                <div class="col-md-4">
+                    <input id="wsTitle" name="title" ng-model="model.title" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.address.$invalid && form.address.$dirty }">
+                <label class="col-md-4 control-label" for="wsAddress">Address</label>
+                <div class="col-md-4">
+                    <input id="wsAddress" name="address" ng-model="model.address" class="form-control input-md" required />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.city.$invalid && form.city.$dirty }">
+                <label class="col-md-4 control-label" for="wsCity">City</label>
+                <div class="col-md-4">
+                    <input id="wsCity" name="city" ng-model="model.city" class="form-control input-md" required />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.state.$invalid && form.state.$dirty }">
+                <label class="col-md-4 control-label" for="wsState">State</label>
+                <div class="col-md-4">
+                    <input id="wsState" name="state" ng-model="model.state" class="form-control input-md" required />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.zip.$invalid && form.zip.$dirty }">
+                <label class="col-md-4 control-label" for="wsZip">Zip</label>
+                <div class="col-md-4">
+                    <input id="wsZip" name="zip" ng-model="model.zip" class="form-control input-md" required />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.phone.$invalid && form.phone.$dirty}">
+                <label class="col-md-4 control-label" for="wsPhone">Phone number</label>
+                <div class="col-md-4">
+                    <input id="wsPhone" name="phone" ng-model="model.phone" class="form-control input-md" required />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.email.$invalid && form.email.$dirty}">
+                <label class="col-md-4 control-label" for="wsEmail">Email</label>
+                <div class="col-md-4">
+                    <input id="wsEmail" type="email" name="email" ng-model="model.email" class="form-control input-md" required />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.naics.$invalid && form.naics.$dirty}">
+                <label class="col-md-4 control-label" for="wsNaics">NAICS code</label>
+                <div class="col-md-4">
+                    <select id="wsNaics" name="naics" ng-options="n.code as n.name for n in naicsCodes" ng-model="model.naics" class="form-control input-md" required></select>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.sic.$invalid && form.sic.$dirty}">
+                <label class="col-md-4 control-label" for="wsSic">SIC code</label>
+                <div class="col-md-4">
+                    <select id="wsSic" name="sic" ng-options="s.code as s.name for s in sicCodes" ng-model="model.sic" class="form-control input-md" required></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" type="submit">Next</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

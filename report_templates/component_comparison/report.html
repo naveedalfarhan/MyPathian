@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <link href="template.css" rel="stylesheet" />
+            <script src="jquery.min.js"></script>
+        </head>
+        <body id="report">
+			<div id="reportcontent">
+                <div>
+                    <img id="comparisonchart" src=""/>
+                </div>
+                <div>
+                    <table id="comparisontable">
+                        <tr id="header">
+                            <th>Equipment Name</th>
+                            <th>Component ID</th>
+                            <th>Description</th>
+                            <th>Units</th>
+                            <th>BIC % Diff</th>
+                            <th>Energy/Hour Diff</th>
+                            <th>Energy/Year Diff</th>
+                            <th>$ Hour</th>
+                            <th>$ Annual</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </body>
+        <script src="data.js"></script>
+        <script src="report-populate.js"></script>
+    </html>

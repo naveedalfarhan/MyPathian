@@ -1,0 +1,96 @@
+#cover_footer {
+    margin-top: 449px;
+    width:100%;
+    text-align:center;
+    font-size: 10px;
+    font-weight:bold;
+}
+
+body {
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+body #cover {
+    padding-top: 100px;
+    margin-left: 200px;
+}
+
+body#header {
+    border:0;
+    margin: 0;
+    position:relative;
+}
+
+body#header #header_container {
+    position:relative;
+    top:1395px;
+    height:15mm;
+    width:100%;
+}
+
+.submittedby, .submittedbylabel, .submittedto, .submittedtolabel{
+    display: inline-block;
+    vertical-align: top;
+}
+.footer-text {
+    font-size:10px;
+}
+
+body#footer {
+    border:0;
+    margin: 0;
+}
+
+.equipment_table {
+    page-break-before: always;
+    width: 100%;
+}
+
+.equipment_name {
+    font-weight: bold;
+    color: #000066;
+    font-size: 16pt;
+}
+
+.equipment_name_spacer > td {
+    border-top: 5px solid #000066;
+    padding-bottom: 30px;
+}
+
+.paragraph_type_name {
+    font-weight: bold;
+    color: #000066;
+    font-size: 14pt;
+}
+
+.paragraph_type_name_spacer > td {
+    border-top: 3px solid #000066;
+    padding-bottom: 30px;
+}
+
+.component_name {
+    font-weight: bold;
+    color: #000000;
+    font-size: 14pt;
+}
+
+.category_title {
+    padding-left: 30px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #000000;
+    font-size: 12pt;
+}
+
+.paragraph_title {
+    padding-left: 60px;
+    font-weight: bold;
+    color: #000000;
+    font-size: 12pt;
+}
+
+.paragraph_text {
+    padding-left: 90px;
+    color: #000000;
+    font-size: 11pt;
+}

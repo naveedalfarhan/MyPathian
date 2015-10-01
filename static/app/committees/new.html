@@ -1,0 +1,50 @@
+<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="message"></p>
+        <fieldset>
+            <legend>Committee Info</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cName">Name</label>
+                <div class="col-md-4">
+                    <input id="cName" ng-model="model.name" ng-required="true" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cGroup">Group</label>
+                <div class="col-md-4">
+                    <div id="cGroup" single-picker="group" single-picker-options="groupGridOptions" single-picker-key-prop="id" single-picker-caption-prop="name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cEnergyDirector">Corporate Energy Director</label>
+                <div class="col-md-4">
+                    <div id="cEnergyDirector" single-picker="energydirector" single-picker-options="contactGridOptions" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Facility Directors and Members</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Facility Directors</label>
+                <div class="col-md-6">
+                    <div multi-picker="facilitydirectors" multi-picker-options="contactGridOptions" multi-picker-key-prop="id" multi-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Team Members</label>
+                <div class="col-md-6">
+                    <div multi-picker="teammembers" multi-picker-options="contactGridOptions" multi-picker-key-prop="id" multi-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="cancel()" class="btn btn-default" value="Cancel">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

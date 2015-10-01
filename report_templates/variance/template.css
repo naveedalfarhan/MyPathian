@@ -1,0 +1,55 @@
+html,body{
+    margin: 0px;
+    padding: 0px;
+    font-size: x-small;
+}
+
+#data-table{
+	border-collapse: collapse;
+	page-break-after: always;
+    width:100%;
+}
+
+#data-table tr{
+	page-break-inside: avoid;
+	display:table-row;
+    background-color: white;
+	text-align: center;
+}
+
+#data-table tr.site{
+    background-color:#B0B0B0;
+    border-left: 2px solid black;
+	border-right: 2px solid black;
+    text-align: left;
+    color:white;
+}
+
+#data-table tr.even{
+    background-color: #EDEDFF;
+}
+
+#data-table tr.even td, #data-table tr.odd td{
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
+
+#data-table tr.lastrowforsite{
+    border-bottom: 2px solid black;
+}
+
+#data-table tr th{
+	margin: 0;
+	padding-left: 2px;
+    padding-right: 2px;
+	cell-padding: 0;
+	background-color:white;
+	color: black;
+	font-weight: bold;
+	border: 2px solid black;
+}
+
+#data-table tr td {
+    padding-left: 5px;
+    padding-right: 5px;
+}

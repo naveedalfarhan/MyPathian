@@ -1,0 +1,78 @@
+<div class="form-group">
+    <label class="col-md-2 control-label" for="wsName">Name</label>
+    <div class="col-md-10">
+        <input id="wsName" ng-model="model.name" class="form-control input-md" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">Group</label>
+    <div class="col-md-10">
+        <p ng-show="viewModel.group" ng-bind="viewModel.group.name"></p>
+        <p ng-hide="viewModel.group">(none selected)</p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="wsDescription">Description</label>
+    <div class="col-md-10">
+        <input id="wsDescription" ng-model="model.description" class="form-control input-md" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="wsDepartment">Department</label>
+    <div class="col-md-10">
+        <input id="wsDepartment" ng-model="model.department" class="form-control input-md" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="wsModel">Model</label>
+    <div class="col-md-10">
+        <input id="wsModel" ng-model="model.model" class="form-control input-md" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="wsManufacturer">Manufacturer</label>
+    <div class="col-md-10">
+        <input id="wsManufacturer" ng-model="model.manufacturer" class="form-control input-md" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="wsDescription">Serial</label>
+    <div class="col-md-10">
+        <input id="wsSerial" ng-model="model.serial" class="form-control input-md" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="wsInstallDate">Install Date</label>
+    <div class="col-md-10">
+        <input id="wsInstallDate" ng-model="model.install_date" datepicker-popup="shortDate" class="form-control input-md" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="wsDemoDate">Demo Date</label>
+    <div class="col-md-10">
+        <input id="wsDemoDate" ng-model="model.demo_date" datepicker-popup="shortDate" class="form-control input-md" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="wsLocation">Location</label>
+    <div class="col-md-10">
+        <input id="wsLocation" ng-model="model.location" class="form-control input-md" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">Component</label>
+    <div class="col-md-10">
+        <p ng-hide="viewModel.component">(none selected)</p>
+        <p ng-show="viewModel.component" ng-bind="viewModel.component.name"></p>
+        <div style="max-height:400px;overflow-y:scroll">
+            <div component-structure-tree selection-style="single" ng-model="viewModel.component"  k-options="componentTreeOptions" edit="false"></div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <button type="button" class="btn btn-primary" ng-click="changePage('subcomponents')">Next</button>
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

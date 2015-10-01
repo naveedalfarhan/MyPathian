@@ -1,0 +1,85 @@
+<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="message"></p>
+        <fieldset>
+            <legend>Edit Contact</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cFirstName">First Name</label>
+                <div class="col-md-4">
+                    <input id="cFirstName" ng-model="model.first_name" ng-required="true" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cLastName">Last Name</label>
+                <div class="col-md-4">
+                    <input id="cLastName" ng-model="model.last_name" ng-required="true" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cTitle">Title</label>
+                <div class="col-md-4">
+                    <input id="cTitle" ng-model="model.title" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cEmail">E-mail</label>
+                <div class="col-md-4">
+                    <input id="cEmail" ng-model="model.email" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cComments">Comments</label>
+                <div class="col-md-4">
+                    <textarea id="cComments" ng-model="model.comments" class="form-control input-md"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cAddress">Address</label>
+                <div class="col-md-4">
+                    <input id="cAddress" ng-model="model.address" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cCity">City</label>
+                <div class="col-md-4">
+                    <input id="cCity" ng-model="model.city" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cState">State</label>
+                <div class="col-md-4">
+                    <input id="cState" ng-model="model.state" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cZip">Zip</label>
+                <div class="col-md-4">
+                    <input id="cZip" ng-model="model.zip" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cCategory">Category</label>
+                <div class="col-md-4">
+                    <select id="cCategory" ng-model="model.category_id" ng-options="item.id as item.name for item in categories">
+                        <option value="">None</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Primary Group</label>
+                <div class="col-md-4">
+                    <div single-picker="model.group" ng-required="true" single-picker-options="groupGridOptions" single-picker-key-prop="id" single-picker-caption-prop="name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="cancel()" class="btn btn-default" value="Cancel">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

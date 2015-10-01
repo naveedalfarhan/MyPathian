@@ -1,0 +1,11 @@
+﻿<div class="padded-container">
+    <p><a href="#/admin/components/structure" ng-show="userPermissions['componentStructureTree']">Structure Tree</a></p>
+    <p><a href="#/admin/components/mapping" ng-show="userPermissions['componentMappingTree']">Mapping Tree</a></p>
+    <p><a href='#/admin/components/manager'>Manager</a></p>
+    <p><a href='#/admin/components/upload'>Upload spreadsheet</a></p>
+    <div kendo-splitter k-orientation="'horizontal'" k-panes="[{ collapsible: false, size: '100%'}]" style="height:600px">
+        <div>
+            <div component-structure-tree k-options="treeOptions"></div>
+        </div>
+    </div>
+</div>

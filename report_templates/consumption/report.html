@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <link href="template.css" rel="stylesheet" />
+            <script src="jquery.min.js"></script>
+        </head>
+        <body id="report">
+			<div id="reportcontent">
+				<table id="intensitytable">
+					<tr>
+						<td id="intensityinfo">
+							Intensity Chart
+							<br>
+							Average <span class="Units"></span> Reduction: <span class="AvgUnitReduction"></span>
+							<br>
+							Average Cost Reduction: <span class="AvgCostReduction"></span>
+						</td>
+						<td>
+							<div class="chart"><img id="intensitychart" src="" width="500"/></div>
+						</td>
+					</tr>
+				</table>
+				<div id="data-table-container" style="margin-top:10px;">
+					<table id="data-table">
+						<tr id="header">
+							<th>
+								Group
+							</th>
+							<th>
+								Utility (<span class="Units"></span>)
+							</th>
+							<th>
+								Reported (<span class="Units"></span>)
+							</th>
+							<th>
+								Benchmark (<span class="Units"></span>)
+							</th>
+							<th>
+								Difference (<span class="Units"></span>)
+							</th>
+							<th>
+								% Change
+							</th>
+							<th>
+								Energy Savings ($)
+							</th>
+						</tr>
+					</table>
+				</div>
+            </div>
+        </body>
+        <script src="data.js"></script>
+        <script src="report-populate.js"></script>
+    </html>

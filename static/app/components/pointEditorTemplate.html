@@ -1,0 +1,81 @@
+<div class="modal-body">
+    <fieldset>
+        <legend ng-bind="caption"></legend>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="mPoint_type">Point Type</label>
+            <div ng-switch="mode">
+                <div class="col-md-6" ng-switch-when="create">
+                    <select id="mPoint_type" ng-model="model.point_type" ng-options="o.value as o.name for o in pointTypes" class="form-control input-md">
+                    </select>
+                </div>
+                <div class="col-md-6" ng-switch-when="edit">
+                    <p ng-bind="model.point_type"></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-show="model.point_type && model.point_type != 'BP'">
+            <label class="col-md-4 control-label" for="mUnits">Units</label>
+            <div ng-switch="mode">
+                <div class="col-md-6" ng-switch-when="create">
+                    <select id="mUnits" ng-model="model.units" ng-options="o.value as o.name for o in unitTypes" class="form-control input-md">
+                    </select>
+                </div>
+                <div class="col-md-6" ng-switch-when="edit">
+                    <p ng-bind="model.units"></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="mCode">Code</label>
+            <div ng-switch="mode">
+                <div class="col-md-6" ng-switch-when="create">
+                    <input class="form-control input-md" id="mCode" ng-model="model.code">
+                </div>
+                <div class="col-md-6" ng-switch-when="edit">
+                    <p ng-bind="model.code"></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="mDescription">Description</label>
+            <div class="col-md-6">
+                <input class="form-control input-md" id="mDescription" ng-model="model.description">
+            </div>
+        </div>
+        <div class="form-group" ng-show="model.point_type == 'CP'">
+            <label class="col-md-4 control-label" for="mFormula">Formula</label>
+            <div class="col-md-6">
+                <input class="form-control input-md" id="mFormula" ng-model="model.formula" ng-change="viewModel.formulaDirty = true">
+                <button class="btn btn-default" ng-click="validateFormula()" ng-show="viewModel.formulaDirty">Validate Formula</button>
+                <div class="alert alert-danger text-danger" ng-show="formulaValidationError">
+                    Formula error: {{formulaValidationError.message}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-show="model.point_type == 'CP' && !viewModel.formulaDirty">
+            <label class="col-md-4 control-label">Parameters</label>
+            <div class="col-md-6">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Point</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="p in model.parameters">
+                            <td ng-bind="p.name"></td>
+                            <td><select ng-options="o.id as o.code for o in viewModel.points" ng-model="p.point_id"></select></td>
+                            <td><input ng-model="p.description"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="submit()" ng-disabled="model.point_type == 'CP' && viewModel.formulaDirty">Submit</button>
+</div>

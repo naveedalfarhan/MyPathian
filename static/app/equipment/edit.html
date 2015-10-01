@@ -1,0 +1,23 @@
+﻿<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <fieldset>
+            <legend>Edit equipment</legend>
+            <div ng-switch on="page">
+                <div ng-switch-when="details">
+                    <div ng-include="'/static/app/equipment/newDetails.html'"></div>
+                </div>
+                <div ng-switch-when="subcomponents">
+                    <div ng-include="'/static/app/equipment/newSubComponents.html'"></div>
+                </div>
+                test message
+                <div ng-switch-when="points">
+                    <div ng-include="'/static/app/equipment/newPoints.html'"></div>
+                </div>
+
+                <div ng-switch-when="paragraphs">
+                    <div ng-include="'/static/app/equipment/newParagraphs.html'"></div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

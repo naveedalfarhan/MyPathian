@@ -1,0 +1,182 @@
+<div class="padded-container">
+    <h3>Upload</h3>
+    <div ng-show="state == 'pick_file'">
+        <input name="file"
+           type="file"
+           kendo-upload
+           k-async="uploadAsyncProps"
+           k-multiple="false"
+           k-success="uploadSuccess"
+           />
+    </div>
+    <div ng-show="state == 'dry_progress' || state == 'dry_progress_loading_results'">
+        <div progressbar max="100" value="progressValue" type="{{progressType}}"><b>{{progressValueDisplay}}</b></div>
+        <div ng-show="state == 'dry_progress_loading_results'">Loading results...</div>
+    </div>
+    <div ng-show="state == 'dry_results'">
+        <div>
+            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-primary" ng-click="submit()">Finish upload</button>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" ng-model="showSkipped"/>Show skipped
+            </label>
+            <label>
+                <input type="checkbox" ng-model="showNameChanged"/>Show name changed
+            </label>
+            <label>
+                <input type="checkbox" ng-model="showAdded"/>Show added
+            </label>
+            <label>
+                <input type="checkbox" ng-model="showErrors"/>Show errors
+            </label>
+        </div>
+        <div kendo-tab-strip k-activate="tabActivated" k-animation="false">
+            <ul>
+                <li class="k-state-active">Components</li>
+                <li>Energy points</li>
+                <li>Variable points</li>
+                <li>Calculated points</li>
+                <li>Position points</li>
+                <li>Numeric points</li>
+                <li>Binary points</li>
+            </ul>
+            <div class="pat-tab-content">
+                <h4>Components</h4>
+                <p>Found {{results.results.components.length}} component(s)</p>
+                <table class="scrolltable table">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="showRow(r)" ng-repeat="r in results.results.components">
+                            <td ng-bind="r.component_num"></td>
+                            <td ng-bind="r.result"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pat-tab-content">
+                <h4>Energy points</h4>
+                <p>Found {{results.results.energy_points.length}} energy points(s)</p>
+                <table class="scrolltable table">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="showRow(r)" ng-repeat="r in results.results.energy_points">
+                            <td ng-bind="r.point_num"></td>
+                            <td ng-bind="r.result"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pat-tab-content">
+                <h4>Variable points</h4>
+                <p>Found {{results.results.variable_points.length}} variable points(s)</p>
+                <table class="scrolltable table">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="showRow(r)" ng-repeat="r in results.results.variable_points">
+                            <td ng-bind="r.point_num"></td>
+                            <td ng-bind="r.result"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pat-tab-content">
+                <h4>Calculated points</h4>
+                <p>Found {{results.results.calculated_points.length}} calculated points(s)</p>
+                <table class="scrolltable table">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="showRow(r)" ng-repeat="r in results.results.calculated_points">
+                            <td ng-bind="r.point_num"></td>
+                            <td ng-bind="r.result"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pat-tab-content">
+                <h4>Position points</h4>
+                <p>Found {{results.results.position_points.length}} position points(s)</p>
+                <table class="scrolltable table">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="showRow(r)" ng-repeat="r in results.results.position_points">
+                            <td ng-bind="r.point_num"></td>
+                            <td ng-bind="r.result"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pat-tab-content">
+                <h4>Numeric points</h4>
+                <p>Found {{results.results.numeric_points.length}} numeric points(s)</p>
+                <table class="scrolltable table">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="showRow(r)" ng-repeat="r in results.results.numeric_points">
+                            <td ng-bind="r.point_num"></td>
+                            <td ng-bind="r.result"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pat-tab-content">
+                <h4>Binary points</h4>
+                <p>Found {{results.results.binary_points.length}} binary points(s)</p>
+                <table class="scrolltable table">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="showRow(r)" ng-repeat="r in results.results.binary_points">
+                            <td ng-bind="r.point_num"></td>
+                            <td ng-bind="r.result"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div ng-show="state == 'wet_progress' || state == 'wet_finished'">
+        <div progressbar max="100" value="wetProgressValue" type="{{wetProgressType}}"><b>{{wetProgressValueDisplay}}</b></div>
+        <div ng-show="state == 'wet_finished'">
+            <p>Finished!</p>
+            <p><a href="#/admin/components/manager">Back to component manager</a></p>
+        </div>
+
+    </div>
+</div>
+

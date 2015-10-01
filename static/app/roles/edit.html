@@ -1,0 +1,33 @@
+﻿<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <fieldset>
+            <legend>Edit Role</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="roleName">Name</label>
+                <div class="col-md-6">
+                    <input id="roleName" ng-model="name" class="form-control input-md" />
+                    <span id="errorMessage" style="color: red;">{{message}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Permissions</label>
+                <div class="col-md-4">
+                    <ul style="list-style-type: none">
+                        <li ng-repeat="permission in permissions">
+                            <input type="checkbox" value="{{permission}}" ng-checked="rolePermissions.indexOf(permission) > -1" ng-click="toggleSelection(permission)">{{permission}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="cancel()" class="btn btn-default" value="submit">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

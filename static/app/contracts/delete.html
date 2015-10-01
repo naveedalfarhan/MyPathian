@@ -1,0 +1,57 @@
+<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="message"></p>
+        <fieldset>
+            <legend>Delete Contract</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <h3>Are you sure you want to delete this contract?</h3>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Name</label>
+                <div class="col-md-4">
+                    <p ng-bind="model.name"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" >Start Date</label>
+                <div class="col-md-4">
+                    <p ng-bind="model.start_date"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">End Date</label>
+                <div class="col-md-4">
+                    <p ng-bind="model.end_date"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Active</label>
+                <div class="col-md-4">
+                    <p ng-bind="model.active"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Purchase Order Number</label>
+                <div class="col-md-4">
+                    <p ng-bind="model.purchase_order_number"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Dollar Amount</label>
+                <div class="col-md-4">
+                    <p ng-bind="model.dollar_amount"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

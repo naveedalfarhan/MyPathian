@@ -1,0 +1,80 @@
+<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="message"></p>
+        <fieldset>
+            <legend>Project Info</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pName">Name</label>
+                <div class="col-md-4">
+                    <input id="pName" ng-model="model.name" ng-required="true" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pAddress">Address</label>
+                <div class="col-md-4">
+                    <input id="pAddress" ng-model="model.address" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pCustomerProjectId">Customer Project Id</label>
+                <div class="col-md-4">
+                    <input id="pCustomerProjectId" ng-model="model.customer_project_id" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pArchitectProjectId">Architect Project Id</label>
+                <div class="col-md-4">
+                    <input id="pArchitectProjectId" ng-model="model.architect_project_id" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pStartDate">Start Date</label>
+                <div class="col-md-4">
+                    <input id="pStartDate" ng-required="true" ng-model="model.start_date" class="form-control input-md" datepicker-popup="{{format}}" datepicker-options="dateOptions" close-text="Close"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pCompleteDate">Complete Date</label>
+                <div class="col-md-4">
+                    <input id="pCompleteDate" ng-required="true" ng-model="model.complete_date" class="form-control input-md" datepicker-popup="{{format}}" datepicker-options="dateOptions" clost-text="Close"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pEstimatedCost">Estimated Cost($)</label>
+                <div class="col-md-4">
+                    <input id="pEstimatedCost" ng-model="model.estimated_cost" ng-required="true" class="form-control input-md"/>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Project Contacts</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pOwner">Owner</label>
+                <div class="col-md-4">
+                    <div id="pOwner" single-picker="owner" single-picker-options="contactGridOptions" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pCommAuthority">Comm Authority</label>
+                <div class="col-md-4">
+                    <div id="pCommAuthority" single-picker="comm_authority" single-picker-options="contactGridOptions" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pEngineer">Engineer</label>
+                <div class="col-md-4">
+                    <div id="pEngineer" single-picker="engineer" single-picker-options="contactGridOptions" single-picker-key-prop="id" single-picker-caption-prop="full_name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="cancel()" class="btn btn-default" value="submit">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

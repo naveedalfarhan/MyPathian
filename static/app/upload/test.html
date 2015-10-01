@@ -1,0 +1,36 @@
+<style type="text/css">
+    .fileinput-button {
+        position: relative;
+        overflow: hidden;
+    }
+    .fileinput-button input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        opacity: 0;
+        -ms-filter: 'alpha(opacity=0)';
+        direction: ltr;
+        cursor: pointer;
+    }
+</style>
+
+<div class="container">
+    <form data-file-upload="options">
+        <div class="row fileupload-buttonbar">
+            <div class="col-lg-7">
+                <button class="fileinput-button" ng-class="{disabled: disabled}">
+                    <span>Browse</span>
+                    <input type="file" name="file" ng-disabled="disabled">
+                </button>
+            </div>
+        </div>
+        <button ng-click="submit()">Submit</button>
+        <ul>
+            <li data-ng-repeat="file in queue" data-ng-bind="file.name"></li>
+        </ul>
+    </form>
+    <ul>
+        <li data-ng-repeat="file in queue" data-ng-bind="file.name"></li>
+    </ul>
+</div>

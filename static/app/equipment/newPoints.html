@@ -1,0 +1,40 @@
+<div class="form-group">
+    <label class="col-md-2 control-label">Name</label>
+    <div class="col-md-10" ng-bind="model.name"></div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">Component</label>
+    <div class="col-md-10" ng-bind="viewModel.component.name"></div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">Sub components</label>
+    <div class="col-md-10">
+        <ul>
+            <li ng-repeat="c in viewModel.subcomponents">{{c.name}}</li>
+        </ul>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">Points</label>
+    <div class="col-md-10">
+        <ul>
+            <li ng-repeat="c in viewModel.available_points">
+                {{c.component.name}}
+                <ul>
+                    <li ng-repeat="p in c.points">
+                        <input type="checkbox" ng-model="viewModel.selected_point_ids[p.id]" ng-change="pointSelected()" />
+                        {{p.component_point_num}} {{p.description}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <button type="button" class="btn btn-default" ng-click="changePage('subcomponents')">Back</button>
+        <button type="submit" class="btn btn-primary" ng-click="changePage('paragraphs')">Next</button>
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

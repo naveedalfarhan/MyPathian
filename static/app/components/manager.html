@@ -1,0 +1,93 @@
+﻿<style type="text/css">
+    .k-pane .k-treeview {
+        height: 100%
+    }
+</style>
+<div class="padded-container">
+    <p><a href="#/admin/components/structure">Structure Tree</a></p>
+    <p><a href="#/admin/components/mapping">Mapping Tree</a></p>
+    <p><a href='#/admin/components/manager'>Manager</a></p>
+    <p><a href='#/admin/components/upload'>Upload spreadsheet</a></p>
+    <div ng-show="showUploadForm">
+        <form data-file-upload="fileUploadOptions">
+            <div ng-hide="uploadResult">
+                <!--<button class="fileinput-button">-->
+                    <span>Browse</span>
+                    <input type="file" name="file">
+                <!--</button>-->
+                <ul>
+                    <li data-ng-repeat="file in queue" data-ng-bind="file.name"></li>
+                </ul>
+                <button class="btn btn-primary" ng-click="submit()">Submit</button>
+            </div>
+            <div ng-show="uploadResult">
+                <p>The component spreadsheet has been uploaded and is currently being processed.</p>
+            </div>
+        </form>
+    </div>
+    <div kendo-splitter k-orientation="'horizontal'" k-panes="[{collapsible: true, size: '45%'}, { collapsible: false, size: '55%'}]" style="height:600px">
+        <div>
+            <div component-manager-tree ng-model="selectedNode"></div>
+        </div>
+        <div>
+			<div ng-hide="selectedInfo">
+				Please select a component.
+			</div>
+            <div ng-show="selectedInfo.componentSelected">
+				<h3>Component: {{selectedInfo.selectedComponent.num}} {{selectedInfo.selectedComponent.description}}</h3>
+                <h4>Child components</h4>
+                <ul>
+                    <li ng-repeat="c in selectedInfo.childComponents">
+                        {{c.num}} {{c.description}}
+                    </li>
+                </ul>
+                <h4>Points</h4>
+                <div component-point-table component-id="selectedInfo.selectedComponent.id"></div>
+                <h4>Engineering</h4>
+                <div component-engineering-table component-id="selectedInfo.selectedComponent.id"></div>
+                <h4>Tasks</h4>
+                <div component-task-table task-data="taskTableData" component-id="selectedInfo.selectedComponent.id"></div>
+                <h4>Issues</h4>
+                <div component-issue-table component-id="selectedInfo.selectedComponent.id"></div>
+			</div>
+            <div ng-show="selectedInfo.componentsMenuSelected">
+				<h3>Component: {{selectedInfo.selectedComponent.num}} {{selectedInfo.selectedComponent.description}}</h3>
+                <h4>Child components</h4>
+                <ul>
+                    <li ng-repeat="c in selectedInfo.childComponents">
+                        {{c.num}} {{c.description}}
+                    </li>
+                </ul>
+			</div>
+            <div ng-show="selectedInfo.pointsMenuSelected">
+				<h3>Component: {{selectedInfo.selectedComponent.num}} {{selectedInfo.selectedComponent.description}}</h3>
+                <h4>Points</h4>
+                <div component-point-table component-id="selectedInfo.selectedComponent.id"></div>
+			</div>
+            <div ng-show="selectedInfo.pointsSpecificMenuSelected">
+				<h3>Component: {{selectedInfo.selectedComponent.num}} {{selectedInfo.selectedComponent.description}}</h3>
+                <h4>{{selectedInfo.selectedPointType}} Points</h4>
+                <ul>
+                    <li ng-repeat="c in selectedInfo.childPoints">
+                        {{c.component_point_num}} {{c.description}}
+                    </li>
+                </ul>
+			</div>
+            <div ng-show="selectedInfo.engineeringMenuSelected">
+				<h3>Component: {{selectedInfo.selectedComponent.num}} {{selectedInfo.selectedComponent.description}}</h3>
+                <h4>Engineering</h4>
+                <div component-engineering-table component-id="selectedInfo.selectedComponent.id"></div>
+			</div>
+            <div ng-show="selectedInfo.engineeringSpecificMenuSelected">
+				<h3>Component: {{selectedInfo.selectedComponent.num}} {{selectedInfo.selectedComponent.description}}</h3>
+                <h4>{{selectedInfo.selectedEngineeringType}} Engineering</h4>
+                <ul>
+                    <li ng-repeat="c in selectedInfo.childParagraphs">
+                        {{c.num}} {{c.title}}
+                    </li>
+                </ul>
+			</div>
+            
+        </div>
+    </div>
+</div>

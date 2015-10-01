@@ -1,0 +1,118 @@
+<div class="container" ng-hide="postSuccess">
+    <form ng-submit="submit()" class="form-horizontal">
+        <fieldset>
+            <legend>Bronze reporting</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Name</label>
+                <div class="col-md-4 form-control-static" ng-bind="model.name"></div>
+                <input type="hidden" name="name" ng-model="model.name">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Address</label>
+                <div class="col-md-4 form-control-static" ng-bind="model.address"></div>
+                <input type="hidden" name="address" ng-model="model.address">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">City</label>
+                <div class="col-md-4 form-control-static" ng-bind="model.city"></div>
+                <input type="hidden" name="city" ng-model="model.city">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">State</label>
+                <div class="col-md-4 form-control-static" ng-bind="model.state"></div>
+                <input type="hidden" name="state" ng-model="model.state">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Phone number</label>
+                <div class="col-md-4 form-control-static" ng-bind="model.phone"></div>
+                <input type="hidden" name="phone" ng-model="model.phone">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Email</label>
+                <div class="col-md-4 form-control-static" ng-bind="model.email"></div>
+                <input type="hidden" name="email" ng-model="model.email">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">NAICS code</label>
+                <div class="col-md-4 form-control-static" ng-bind="model.naics"></div>
+                <input type="hidden" name="naics" ng-model="model.naics">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">SIC code</label>
+                <div class="col-md-4 form-control-static" ng-bind="model.sic"></div>
+                <input type="hidden" name="sic" ng-model="model.sic">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Average square footage</label>
+                <div class="col-md-4 form-control-static" ng-bind="model.sqft"></div>
+                <input type="hidden" name="sqft" ng-model="model.sqft">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Electric account</label>
+                <div class="col-md-4 form-control-static">
+                    <div ng-show="model.electricAccount.enabled" ng-bind="model.electricAccount.name"></div>
+                    <div ng-hide="model.electricAccount.enabled">n/a</div>
+                </div>
+                <input type="hidden" name="electricAccount.enabled" ng-model="model.electricAccount.enabled">
+                <input type="hidden" name="electricAccount.name" ng-model="model.electricAccount.name">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Electric account data format</label>
+                <div class="col-md-4 form-control-static">
+                    <div ng-show="model.electricAccount.enabled">
+                        <div ng-show="model.electricAccount.uploadFormat == 'grid'">Manually input</div>
+                        <div ng-show="model.electricAccount.uploadFormat == 'energyStar'">Energy Star spreadsheet</div>
+                    </div>
+                    <div ng-hide="model.electricAccount.enabled">n/a</div>
+                </div>
+                <input type="hidden" name="electricAccount.uploadFormat" ng-model="model.electricAccount.uploadFormat">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Gas account</label>
+                <div class="col-md-4 form-control-static">
+                    <div ng-show="model.gasAccount.enabled" ng-bind="model.gasAccount.name"></div>
+                    <div ng-hide="model.gasAccount.enabled">n/a</div>
+                </div>
+                <input type="hidden" name="gasAccount.enabled" ng-model="model.gasAccount.enabled">
+                <input type="hidden" name="gasAccount.name" ng-model="model.gasAccount.name">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Gas account data format</label>
+                <div class="col-md-4 form-control-static">
+                    <div ng-show="model.gasAccount.enabled">
+                        <div ng-show="model.gasAccount.uploadFormat == 'grid'">Manually input</div>
+                        <div ng-show="model.gasAccount.uploadFormat == 'energyStar'">Energy Star spreadsheet</div>
+                    </div>
+                    <div ng-hide="model.gasAccount.enabled">n/a</div>
+                </div>
+                <input type="hidden" name="gasAccount.uploadFormat" ng-model="model.gasAccount.uploadFormat">
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <a class="btn btn-default" ng-href="{{backLink}}">Back</a>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="container" ng-show="postSuccess">
+    <h3>Bronze reporting</h3>
+    <p>Success!</p>
+    <p>You have successfully sent a bronze reporting request. A Pathian representative will be in contact with you regarding your report results.</p>
+</div>
+
+<script type="text/ng-template" id="submitErrorModal.html">
+    <div class="modal-header">
+        <h3>Error</h3>
+    </div>
+    <div class="modal-body">
+        <p>There was an error submitting your bronze reporting request. Please try again.</p>
+        <p>If you continue to see this error message, please contact a system administrator.</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+    </div>
+</script>

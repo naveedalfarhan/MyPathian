@@ -1,0 +1,16 @@
+﻿<div class="padded-container">
+    <p>Equipment</p>
+    <div kendo-splitter k-orientation="'horizontal'" k-panes="[{collapsible: true, size: '45%'}, { collapsible: false, size: '55%'}]" style="height:600px">
+        <div>
+            <div group-tree selection-style="single" k-options="groupTreeOptions" ng-model="model.selectedGroup"></div>
+        </div>
+        <div>
+			<div ng-hide="model.selectedGroup">
+				Please select a group.
+			</div>
+            <div ng-show="model.selectedGroup">
+                <div equipment-table></div>
+            </div>
+        </div>
+    </div>
+</div>

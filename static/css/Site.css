@@ -1,0 +1,458 @@
+﻿body {
+    padding-bottom: 20px;
+    background: #999 url("bgrd_body.jpg") repeat-x fixed top;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+[multi-picker] [multipicker-list] {
+    float: left;
+    width: 200px;
+}
+
+[multi-picker] [kendo-grid] {
+    float: left;
+}
+
+#loadingSpinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: #999999;
+    opacity: 0.8;
+}
+
+#loadingSpinner img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -64px;
+    margin-top: -64px;
+    display: block;
+}
+
+.role-list{
+    display: inline-block;
+    min-width: 100px;
+    min-height: 36px;
+    border: 1px solid #dddddd;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+    vertical-align: top;
+}
+
+.role-list li:not(:first-child) {
+    vertical-align: top;
+    display: block;
+    border-top: 1px solid #dddddd;
+}
+
+.role-list  li:first-child{
+    vertical-align: top;
+    display: block;
+}
+
+.navbar {
+    background: url("bgrd_bluegrad_acct.gif") repeat;
+}
+
+.navbar-default {
+    margin-bottom: 0px;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li.active > a,
+.navbar-default .navbar-nav > li.active > a:hover,
+.navbar-default .navbar-nav > li.active > a:focus,
+.navbar-default .navbar-nav > li.open > a,
+.navbar-default .navbar-nav > li.open > a:hover,
+.navbar-default .navbar-nav > li.open > a:focus {
+    background-color: #007bad;
+    color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+.viewContainer > div {
+    background-color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+}
+.fileinput-button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    direction: ltr;
+    cursor: pointer;
+}
+
+/* Kendo overrides */
+
+.k-justifyLeft{
+    background-position: -66px -135px;
+}
+
+.padded-container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.dashboard-table td{
+    table-layout: fixed;
+    word-wrap: normal;
+    font-size: 10px;
+}
+
+.dashboard-table th {
+    padding: 8px 4px !important;
+    font-size: 12px !important;
+}
+
+.pat-container {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.pat-tab-content {
+    min-height: 300px;
+}
+
+.pat-list-title {
+    margin-bottom:10px;
+}
+
+.pat-list {
+    list-style: none;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.pat-list-component {
+    color: #666;
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.pat-list-category {
+    color: #666;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.pat-list-item {
+    margin-bottom: 5px;
+    margin-left: 20px;
+    color: #666;
+}
+
+.pat-list-item:hover {
+    color: #000;
+}
+
+.pat-label {
+    float: left;
+    font-size: 12px;
+    margin-right: 20px;
+    width: 400px;
+}
+
+.pat-icons {
+    float: left;
+}
+
+.pat-icon {
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.pat-form-label {
+    margin-right: 10px;
+}
+
+.pat-form-field {
+    margin-bottom: 5px;
+}
+
+.pat-form-field-stretch {
+    width: 100%;
+    max-width: none;
+}
+
+.pat-window {
+    background-color: #e3e3e3;
+    padding: 0px !important;
+    position: relative;
+}
+
+.pat-window-content {
+    padding: 10px;
+    background-color: #fff;
+    height: 410px;
+}
+
+.pat-window-footer {
+    background-image: none,linear-gradient(to bottom,#f6f6f6 0,#eaeaea 100%);
+    border-top: 2px solid #888;
+    padding: 5px;
+}
+
+.pat-window-footer-options {
+    float:right;
+}
+
+.pat-hyperlink {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.pat-table-container {
+    margin:0px;padding:0px;
+    width:100%;
+    box-shadow: 10px 10px 5px #888888;
+    border:1px solid #000000;
+    
+    -moz-border-radius-bottomleft:0px;
+    -webkit-border-bottom-left-radius:0px;
+    border-bottom-left-radius:0px;
+    
+    -moz-border-radius-bottomright:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-right-radius:0px;
+    
+    -moz-border-radius-topright:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-right-radius:0px;
+    
+    -moz-border-radius-topleft:0px;
+    -webkit-border-top-left-radius:0px;
+    border-top-left-radius:0px;
+}.pat-table-container table{
+    border-collapse: collapse;
+        border-spacing: 0;
+    width:100%;
+    height:100%;
+    margin:0px;padding:0px;
+}.pat-table-container tr:last-child td:last-child {
+    -moz-border-radius-bottomright:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-right-radius:0px;
+}
+.pat-table-container table tr:first-child td:first-child {
+    -moz-border-radius-topleft:0px;
+    -webkit-border-top-left-radius:0px;
+    border-top-left-radius:0px;
+}
+.pat-table-container table tr:first-child td:last-child {
+    -moz-border-radius-topright:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-right-radius:0px;
+}.pat-table-container tr:last-child td:first-child{
+    -moz-border-radius-bottomleft:0px;
+    -webkit-border-bottom-left-radius:0px;
+    border-bottom-left-radius:0px;
+}.pat-table-container tr:hover td{
+    
+}
+.pat-table-container tr:nth-child(odd){ background-color:#cccccc; }
+.pat-table-container tr:nth-child(even)    { background-color:#ffffff; }.pat-table-container td{
+    vertical-align:middle;
+    
+    
+    border:1px solid #000000;
+    border-width:0px 1px 1px 0px;
+    text-align:left;
+    padding:7px;
+    font-size:10px;
+    font-family:Arial;
+    font-weight:normal;
+    color:#000000;
+}.pat-table-container tr:last-child td{
+    border-width:0px 1px 0px 0px;
+}.pat-table-container tr td:last-child{
+    border-width:0px 0px 1px 0px;
+}.pat-table-container tr:last-child td:last-child{
+    border-width:0px 0px 0px 0px;
+}
+.pat-table-container tr:first-child td{
+        background:-o-linear-gradient(bottom, #00537c 5%, #00537c 100%);    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #00537c), color-stop(1, #00537c) );
+    background:-moz-linear-gradient( center top, #00537c 5%, #00537c 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#00537c", endColorstr="#00537c");  background: -o-linear-gradient(top,#00537c,00537c);
+
+    background-color:#00537c;
+    border:0px solid #000000;
+    text-align:center;
+    border-width:0px 0px 1px 1px;
+    font-size:14px;
+    font-family:Arial;
+    font-weight:bold;
+    color:#ffffff;
+}
+.pat-table-container tr:first-child:hover td{
+    background:-o-linear-gradient(bottom, #00537c 5%, #00537c 100%);    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #00537c), color-stop(1, #00537c) );
+    background:-moz-linear-gradient( center top, #00537c 5%, #00537c 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#00537c", endColorstr="#00537c");  background: -o-linear-gradient(top,#00537c,00537c);
+
+    background-color:#00537c;
+}
+.pat-table-container tr:first-child td:first-child{
+    border-width:0px 0px 1px 0px;
+}
+.pat-table-container tr:first-child td:last-child{
+    border-width:0px 0px 1px 1px;
+}
+
+.pat-table-container .raf-name {
+
+}
+.pat-table-container .raf-inlet {
+    width: 100px;
+}
+.pat-table-container .raf-discharge {
+    width: 100px;
+}
+.pat-table-container .raf-delta {
+    width: 100px;
+}
+.pat-table-container .raf-mixing-box {
+    width: 100px;
+}
+.pat-table-container .raf-actions {
+    width: 100px;
+}
+
+.pat-rs-table-row {
+    background-color: #fff !important;
+}
+
+.pat-rs-table-input {
+    width: 100%;
+}
+
+.pat-no-max-width {
+    max-width: none;
+}
+
+.form-control.ng-invalid {
+    border-color: red;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.clear {
+    clear: both;
+}
+
+/* Dims the screen */
+.dim
+{
+    height:100%;
+    width:100%;
+    position:fixed;
+    left:0;
+    top:0;
+    z-index:10000 !important;
+    background:rgba(0,0,0,0.65);
+    text-align: center;
+}
+
+.dim span {
+    position: relative;
+    top: 35%;
+    margin-top: -150px;
+    font-size: 20px;
+    color: rgba(255,255,255,1);
+    font-weight: bold;
+}
+
+.dim img {
+    position: relative;
+    margin-top: 15px;
+    color: rgba(255,255,255,1);
+}
+
+.dim div {
+    position: relative;
+    top: 35%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dim div a {
+    color: rgba(255,255,255,1);
+}
+
+.scrolltable {
+    max-height: 500px;
+    overflow: auto;
+    display: block;
+}
+
+.fake-link {
+    cursor: pointer;
+    color:#428bca;
+}
+
+.fake-link:hover{
+    color: #2a6496;
+    text-decoration: underline;
+}
+
+.bic {
+    background-color: lightgreen !important;
+}

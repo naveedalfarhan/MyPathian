@@ -1,0 +1,54 @@
+<div class="padded-container">
+    <div class="row">
+        <div class="col-md-5">
+            <div style="border: thin solid darkgray; max-height: 150px; min-height:150px;overflow: scroll;">
+                <ul>
+                    <li style="list-style: none" ng-repeat="node in nodes.selectedNodes" ng-bind="node.name"></li>
+                </ul>
+            </div>
+            <div style="border: thin solid darkgray; max-height: 450px; overflow: scroll;">
+                <div component-reporting-tree ng-model="nodes.selectedNodes" selection-style="multiple" options="treeOptions"></div>
+            </div>
+            <div id="pointGrid"></div>
+        </div>
+        <div class="col-md-7">
+            <form ng-submit="submit()" class="form-horizontal">
+                <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="errorMessage"></p>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="col-md-12" style="padding-bottom: 4px">
+                            <span class="col-md-12"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <button type="button" class="btn btn-primary col-md-6" ng-click="exportToPdf()">Export to PDF</button>
+                                <button type="submit" class="btn btn-primary col-md-6" value="submit">Run Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+            </form>
+        </div>
+    </div>
+    <div class="row" ng-if="intensityModel">
+        <div class="col-md-12">
+            <div reporting-intensity-chart="intensityModel" report-type="entityType"></div>
+        </div>
+    </div>
+    <div class="row" ng-if="intensityModel">
+        <div class="col-md-12">
+            <div component-standards-table="intensityModel"></div>
+        </div>
+    </div>
+</div>
+
+<div id="loader" class="dim" ng-show="exporting">
+    <span class="load" ng-hide="pdfurl">
+        Loading...<br/>
+        <img class="load" src="/static/css/loadingGif.gif" alt="Loading..." height="150" width="150"/>
+    </span>
+    <div id="link" ng-show="pdfurl">
+        <a ng-href="{{pdfurl}}" target="_blank" ng-click="openPdf()">Click to open PDF</a>
+    </div>
+</div>

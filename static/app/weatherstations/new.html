@@ -1,0 +1,34 @@
+﻿<div class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <fieldset>
+            <legend>New Weather Station</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="wsName">Name</label>
+                <div class="col-md-4">
+                    <input id="wsName" ng-model="model.name" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="wsUsaf">USAF</label>
+                <div class="col-md-4">
+                    <input id="wsUsaf" ng-model="model.usaf" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="wsWban">WBAN</label>
+                <div class="col-md-4">
+                    <input id="wsWban" ng-model="model.wban" class="form-control input-md" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="cancel()" class="btn btn-default" value="Cancel">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

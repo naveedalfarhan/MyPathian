@@ -1,0 +1,360 @@
+{
+    "tables": [
+        {"name": "accounts", "indexes": ["group_id"]},
+        {
+            "name": "actionitempriorities",
+            "seed_data": [
+                {"name": "Critical - Life Safety"},
+                {"name": "High"},
+                {"name": "Medium"},
+                {"name": "Low"}
+            ]
+        },
+        {
+            "name": "actionitemstatuses",
+            "seed_data": [
+                {"name": "Active"},
+                {"name": "Cancelled"},
+                {"name": "Complete"},
+                {"name": "Postponed"}
+            ]
+        },
+        {
+            "name": "actionitemtypes",
+            "seed_data": [
+                {"name": "Commissioning"},
+                {"name": "Construction"},
+                {"name": "Design"},
+                {"name": "Energy Committee"},
+                {"name": "Green Committee"},
+                {"name": "Owner Occupancy"},
+                {"name": "Pre-design"}
+            ]
+        },
+        {"name": "active_notifications", "indexes": ["user_id"]},
+        "bronze_reporting_requests",
+        "categories",
+        "committees",
+        {
+            "name": "compiled_energy_records",
+            "indexes": [
+                "account_id",
+                {"name": "has_peak", "fields": ["account_id", "comparison_type", "year", "peak"]},
+                {"name": "no_peak", "fields": ["account_id", "comparison_type", "year"]},
+                {"name": "account_year_month", "fields": ["account_id", "year", "month"]}
+            ]
+        },
+        {
+            "name": "compiled_equipment_point_records",
+            "indexes": [
+                "syrx_num",
+                {"name": "has_peak", "fields": ["syrx_num", "comparison_type", "year", "peak"]},
+                {"name": "no_peak", "fields": ["syrx_num", "comparison_type", "year"]},
+                {"name": "point_has_peak", "fields": ["point_num", "comparison_type", "year", "peak"]},
+                {"name": "point_no_peak", "fields": ["point_num", "comparison_type", "year"]},
+                {"name": "syrx_year", "fields": ["syrx_num", "year", "comparison_type"]}
+            ]
+        },
+        {"name": "component_issues", "indexes": ["component_id"]},
+        {
+            "name": "component_points",
+            "indexes": [
+                "component_id",
+                "point_type",
+                {"name": "component_id_point_type", "fields": ["component_id", "point_type"]},
+                "component_point_num",
+                {"name": "component_id_master_point", "fields": ["component_id", "master_point"]},
+                "master_point"
+            ]},
+        {"name": "component_master_point_mappings", "indexes":["component_id", "master_point_num"]},
+        {"name": "component_tasks", "indexes": ["component_id"]},
+        {
+            "name": "components",
+            "indexes": [
+                "structure_parent_id",
+                {"name": "structure_child_ids", "multi": true},
+                {"name": "mapping_parent_ids", "multi": true},
+                {"name": "mapping_child_ids", "multi": true},
+                "num",
+                "description"
+            ]
+        },
+        "contacts",
+        "contracts",
+        {
+            "name": "data_mapping",
+            "indexes": [
+                "syrx_num",
+                "source",
+                "johnson_site_id",
+                {"name": "johnson", "fields": ["johnson_site_id", "johnson_fqr"]},
+                {"name": "fieldserver", "fields": ["fieldserver_site_id", "fieldserver_offset"]},
+                {"name": "invensys", "fields": ["invensys_site_name", "invensys_equipment_name", "invensys_point_name"]},
+                {"name": "siemens", "fields": ["siemens_meter_name"]}
+            ]
+        },
+        "eco",
+        {
+            "name": "energyrecords",
+            "indexes": [
+                "type",
+                "account_id",
+                {"name": "peak_report", "fields": ["account_id", "local_year"]},
+                {"name": "account_date", "fields": ["account_id", "local_year", "local_month", "local_day_of_month"]},
+                {"name": "account_utc_date", "fields": ["account_id", "readingdateutc"]}
+            ]
+        },
+        {
+            "name": "equipment",
+            "indexes": [
+                "component_id",
+                {"name": "combined_tree", "fields": ["group_id", "num"]},
+                "group_id",
+                {"name": "subcomponent_ids", "multi": true}
+            ]
+        },
+        {"name": "equipment_issues", "indexes": ["equipment_id"]},
+        {"name": "equipment_paragraphs", "indexes": ["equipment_id", "syrx_num", "paragraph_id"]},
+        {
+            "name": "equipment_point_records",
+            "indexes": [
+                "syrx_num",
+                {"name": "syrx_num_date", "fields": ["syrx_num", "date"]}
+            ]
+        },
+        {
+            "name": "equipment_points",
+            "indexes": [
+                "equipment_id",
+                "syrx_num",
+                "component_point_id",
+                "component_id",
+                {"name": "equipment_id_component_id", "fields": ["equipment_id", "component_id"]},
+                {"name": "equipment_id_point_type", "fields": ["equipment_id", "point_type"]},
+                "component_point_num",
+                {"name": "equipment_id_component_id", "fields": ["equipment_id", "component_id"]}
+            ]
+        },
+        {"name": "equipment_raf", "indexes": ["equipment_id"]},
+        {"name": "equipment_reset_schedule", "indexes": ["equipment_id"]},
+        {"name": "equipment_tasks", "indexes": ["equipment_id"]},
+        {"name": "flat_components", "indexes": ["component_id", "descendant_component_id"]},
+        {"name": "flat_groups", "indexes": ["group_id", "descendant_group_id"]},
+        {"name": "flat_naics_codes", "indexes": ["code", "descendant"]},
+        {"name": "flat_sic_codes", "indexes": ["code", "descendant"]},
+        {
+            "name": "global_vendor_point_records",
+            "indexes": [
+                {"name": "johnson", "fields": ["johnson_site_id", "johnson_fqr"]},
+                {"name": "fieldserver", "fields": ["fieldserver_site_id", "fieldserver_offset"]},
+                {"name": "invensys", "fields": ["invensys_site_name", "invensys_equipment_name", "invensys_point_name"]},
+                {"name": "siemens", "fields": ["siemens_meter_name"]}
+            ]
+        },
+        {
+            "name": "groups",
+            "indexes": [
+                "isRoot",
+                "name",
+                "lower_name",
+                {"name": "childIds", "multi": true},
+                {"name": "parentIds", "multi": true},
+                "naics_code",
+                "sic_code"
+            ]
+        },
+        {"name": "issues", "indexes": ["group_id"]},
+        {
+            "name": "issuepriorities",
+            "seed_data": [
+                {"name": "Critical - Life Safety"},
+                {"name": "Future Budget Item"},
+                {"name": "High"},
+                {"name": "Medium"},
+                {"name": "Low"}, 
+                {"name": "Normal"},
+                {"name": "Normal - Correct within 60 days"}
+            ]
+        },
+        {
+            "name": "issuestatuses",
+            "seed_data": [
+                {"name": "Active"},
+                {"name": "Cancelled"},
+                {"name": "Complete"},
+                {"name": "Postponed"},
+                {"name": "Resolved"}
+            ]
+        },
+        {
+            "name": "issuetypes",
+            "seed_data": [
+                {"name": "Committee"},
+                {"name": "Construction"},
+                {"name": "Construction - Project Compliance"},
+                {"name": "Controls Commissioning"},
+                {"name": "Design"},
+                {"name": "Equipment"},
+                {"name": "Equipment Commissioning"},
+                {"name": "Green Commissioning"},
+                {"name": "Other Commissioning"},
+                {"name": "Owner Occupancy"},
+                {"name": "Pre-design"}
+            ]
+        },
+        "meetings",
+        {
+            "name": "meetingtypes",
+            "seed_data": [
+                {"name": "Construction"},
+                {"name": "Design"},
+                {"name": "Energy Committee"},
+                {"name": "Green Committee"},
+                {"name": "Occupancy & Operations"},
+                {"name": "Pre-Design"}
+            ]
+        },
+        {"name": "naics_codes", "indexes": ["code", "numeric_code", "parent_code"]},
+        {"name": "naics_groups_mapping", "indexes": ["group_descendant", "code"]},
+        {"name": "next_group_num", "seed_data": [{"next_group_num": 1}]},
+        {
+            "name": "noaarecords",
+            "indexes": [
+                "weatherstation_id",
+                {"name": "import_index", "fields": ["localyear", "weatherstation_id"]},
+                {"name": "weatherstation_year", "fields": ["weatherstation_id", "localyear"]},
+                {"name": "weatherstation_date", "fields": ["weatherstation_id", "datetimeutc"]}
+            ]
+        },
+        {
+            "name": "paragraph_definitions",
+            "indexes": [
+                "component_id",
+                {"name": "component_id_paragraph_type", "fields": ["component_id", "type"]}
+            ]},
+        {"name": "pricenormalizations", "indexes": ["account_id"]},
+        "projects",
+        {"name": "reset_schedules"},
+        {"name": "roles"},
+        {"name": "sic_codes", "indexes": ["code", "numeric_code", "parent_code"]},
+        {"name": "sic_groups_mapping", "indexes": ["group_descendant", "code"]},
+        {"name": "sizenormalizations", "indexes": ["account_id"]},
+        {"name": "tasks", "indexes": ["group_id"]},
+        {
+            "name": "taskpriorities",
+            "seed_data":[
+                {"name": "High"},
+                {"name": "Medium"},
+                {"name": "Low"}
+            ]
+        },
+        {
+            "name": "taskstatuses",
+            "seed_data": [
+                {"name": "Active"},
+                {"name": "Closed"},
+                {"name": "Complete"},
+                {"name": "Future Budget Task"}
+            ]
+        },
+        {
+            "name": "tasktypes",
+            "seed_data": [
+                {"name": "Calibration"},
+                {"name": "Modify Existing Equipment/Device"},
+                {"name": "New Equipment/Device"},
+                {"name": "Programming"},
+                {"name": "Replace Equipment/Device"}
+            ]
+        },
+        {
+            "name": "unmapped_syrx_nums",
+            "indexes": ["syrx_num"]
+        },
+        {
+            "name": "unmapped_vendor_point_records",
+            "indexes": [
+                {"name": "johnson", "fields": ["johnson_fqr", "johnson_site_id"]},
+                {"name": "fieldserver", "fields": ["fieldserver_offset", "fieldserver_site_id"]},
+                {"name": "invensys", "fields": ["invensys_point_name", "invensys_equipment_name", "invensys_site_name"]},
+                {"name": "siemens", "fields": ["siemens_meter_name"]}
+            ]
+        },
+        {"name": "users"},
+        {"name": "users_roles"},
+        "utilitycompanies",
+        {
+            "name": "unknown_vendor_points",
+            "indexes": [
+                "source",
+                "johnson_site_id",
+                "johnson_fqr",
+                {"name": "johnson", "fields": ["johnson_site_id", "johnson_fqr"]},
+                {"name": "fieldserver", "fields": ["fieldserver_site_id", "fieldserver_offset"]},
+                {"name": "invensys", "fields": ["invensys_site_name", "invensys_equipment_name", "invensys_point_name"]},
+                {"name": "siemens", "fields": ["siemens_meter_name"]}
+            ]
+        },
+        {
+            "name": "vendor_points",
+            "indexes": [
+                "vendor",
+                "sensor_id",
+                {"name": "vendor_sensor_id", "fields": ["vendor", "sensor_id"]},
+                {"name": "fieldserver", "fields": ["fieldserver_site_id", "fieldserver_offset"]},
+                {"name": "invensys", "fields": ["invensys_site_name", "invensys_equipment_name", "invensys_point_name"]},
+                {"name": "johnson", "fields": ["johnson_site_id", "johnson_fqr"]}
+            ]
+        },
+        {
+            "name": "vendor_records",
+            "indexes": [
+                "vendor",
+                {"name": "vendor_utc_timestamp", "fields": ["vendor", "utc_timestamp"]},
+                {"name": "vendor_sensor_id_utc_timestamp", "fields": ["vendor", "sensor_id", "utc_timestamp"]}
+            ]
+        },
+        {"name": "weatherstations", "indexes": ["name"]},
+        {
+            "name": "syrxcategories",
+            "seed_data": [
+                {"name":"Occupancy Schedule"},
+                {"name":"OSA Fan Control"},
+                {"name":"Safety Control"},
+                {"name":"Smoke & Life Safety"},
+                {"name":"Supply Fan Control"},
+                {"name":"Return Fan Control"},
+                {"name":"Exhaust Fan Control"},
+                {"name":"Relief Fan Control"},
+                {"name":"Outside Air and Return Air Damper Control"},
+                {"name":"Relief Air Damper Control"},
+                {"name":"Heating Water Preheat Coil Control"},
+                {"name":"Coil Circulating Pump"},
+                {"name":"Steam Preheat Coil Control"},
+                {"name":"Preheat Coil Control with Integral Face and Bypass Damper"},
+                {"name":"Chilled Water Cooling Coil Control"},
+                {"name":"Secondary Chilled Water Cooling Coil Control"},
+                {"name":"Heat Recovery Coil"},
+                {"name":"Reheat Coil Control"},
+                {"name":"Cold Deck Control"},
+                {"name":"Hot Deck Control"},
+                {"name":"Direct Injection Steam Humidifier Control"},
+                {"name":"Humidifier Control, Steam-to-Steam or Electric"},
+                {"name":"Glycol Dehumidification Control"},
+                {"name":"DX Cooling Control"},
+                {"name":"Heat Wheel"},
+                {"name":"Peripheral"},
+                {"name":"Supply Air Temperature Reset"},
+                {"name":"Miscellaneous"},
+                {"name":"Fire-Tube Boilers"},
+                {"name":"Deaerators"},
+                {"name":"Centrifugal Water Chillers"},
+                {"name":"Forced-Draft Cooling Tower"},
+                {"name":"Hydronic Pumps"},
+                {"name":"Steam-to-Water Heat Exchangers"},
+                {"name":"Commissioning Plan"}
+            ]
+        },
+        {"name": "saved_report_configurations", "indexes":["user_id"]}
+    ]
+}

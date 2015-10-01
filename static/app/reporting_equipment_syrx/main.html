@@ -1,0 +1,28 @@
+<div class="padded-container">
+    <h3>Syrx report</h3>
+    <div class="row">
+        <div class="col-md-5">
+            <div style="border:thin solid darkgray;height:150px;overflow:scroll;">
+                <ul>
+                    <li ng-repeat="e in selectedEquipment">{{e.group_name}} - {{e.name}}</li>
+                </ul>
+            </div>
+            <div style="border:thin solid darkgray;max-height:450px;overflow:scroll;">
+                <div equipment-manager-tree ng-model="selectedEquipment"></div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <button class="btn btn-primary" ng-click="runReport()">Run report</button>
+        </div>
+    </div>
+</div>
+
+<div class="dim" ng-show="exporting">
+    <span class="load" ng-hide="pdfurl">
+        Loading...<br/>
+        <img class="load" src="/static/css/loadingGif.gif" alt="Loading..." height="150" width="150"/>
+    </span>
+    <div id="link" ng-show="pdfurl">
+        <a ng-href="{{pdfurl}}" target="_blank" ng-click="openPdf()">Click to open PDF</a>
+    </div>
+</div>

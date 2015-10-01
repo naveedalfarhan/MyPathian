@@ -1,0 +1,26 @@
+<html>
+	<head>
+        <style type="text/css">
+            .footer-text {
+                font-size:10px;
+            }
+        </style>
+	</head>
+	<body style="border:0; margin: 0;" onload="wkhtmltopdfSubstitutions()">
+		<div class="footer-text" style="text-align:center;">
+			<p>NON-COMPETE/NON-DISCLOSURE APPLY COPYRIGHT PATHIAN INCORPORATED, 2014 ALL RIGHTS RESERVED PATENT PENDING CONFIDENTIAL</p>
+		</div>
+		<table width="100%">
+			<tr>
+				<td width="33%" class="footer-text" style="text-align:left;">Pathian, Inc</td>
+				<td width="33%" class="footer-text" style="text-align:center;"><span class="reportdate"></span></td>
+				<td width="33%" class="footer-text" style="text-align:right;">
+					<p class="footer-text" style="display:inline;">Page <span class="page"></span> </p>
+				</td>
+			</tr>
+		</table>
+        <script src="wkhtmltopdf.substitutions.js"></script>
+	</body>
+    <script src="data.js"></script>
+    <script src="footer-populate.js"></script>
+</html>

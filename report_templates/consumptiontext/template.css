@@ -1,0 +1,70 @@
+html,body,table{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    width:1000px;
+}
+
+#report{
+    margin:0;
+    padding: 5px 0 0;
+}
+
+.data-table{
+    border: 2px solid black;
+	border-collapse: collapse;
+    width:1000px;
+}
+
+.data-table tr:nth-child(odd){
+    background-color: #EDEDFF;
+}
+
+#groups-table tr:last-child{
+    background-color: #2D8B57;
+    color:white;
+}
+
+.data-table tr{
+	page-break-inside: avoid;
+	display:table-row;
+    background-color: white;
+	text-align: center;
+}
+
+.data-table tr td:first-child{
+    text-align: left;
+    width:250px;
+}
+
+.data-table tr td{
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
+
+.data-table tr th{
+	margin: 0;
+	padding: 0;
+	cell-padding: 0;
+	background-color:#4681B3;
+	color: white;
+	font-weight: bold;
+	border: 2px solid black;
+}
+
+.group-label{
+    font-weight: bold;
+    padding:0;
+    margin: 10px 0 0;
+}
+
+.grand-total {
+    background-color: green !important;
+    color: #ffffff;
+}
+
+h3 {
+    margin-bottom: 0;
+}

@@ -1,0 +1,219 @@
+<style type="text/css">
+    .k-pane .k-treeview {
+        height: 100%
+    }
+</style>
+<div class="container">
+    <p><a href="#/admin/components/structure" ng-show="userPermissions['componentStructureTree']">Structure Tree</a></p>
+    <p><a href="#/admin/components/mapping" ng-show="userPermissions['componentMappingTree']">Mapping Tree</a></p>
+    <p><a href='#/admin/components/manager'>Manager</a></p>
+	<p><a href="#/admin/components/points" ng-show="userPermissions['componentPointManager']">Points Manager</a></p>
+    <p><a href='#/admin/components/engineering' ng-show="userPermissions['componentEngineering']">Engineering Manager</a></p>
+    <div kendo-splitter k-orientation="'horizontal'" k-panes="[{collapsible: true, size: '35%'}, { collapsible: false, size: '65%'}]" style="height:600px">
+        <div>
+            <div component-point-tree="selectedNode" k-options="structureTreeOptions"></div>
+        </div>
+        <div>
+			<div ng-hide="selectedNode">
+				Please select a component.
+			</div>
+            <div ng-show="selectedNode">
+				<h3>Component: {{selectedNode.num}} {{selectedNode.description}}</h3>
+				<div kendo-tab-strip>
+                    <ul>
+                        <li>Control Sequences</li>
+                        <li>Acceptance Requirements</li>
+                        <li>Commissioning Requirements</li>
+                        <li>Functional Tests</li>
+                        <li>Demand Response</li>
+                        <li>Load Curtailment</li>
+                        <li>Maintenance Requirements</li>
+                        <li>Project Requirements</li>
+                        <li>Roles and Responsibilities</li>
+                        <li>Issues</li>
+                        <li>Tasks</li>
+                    </ul>
+                    <div>
+                        <br/>
+                        <div id='controlSequenceGrid' kendo-grid k-on-change='controlSequenceChanged(kendoEvent)' k-options='controlSequenceGridOptions' k-data-source='controlSequenceGridOptions.dataSource'></div>
+                        <br/>
+                        <div>
+                            <div style="float: left;display: inline-block">
+                                Title:
+                                <input type="text" id="controlSequenceTitle" ng-model="controlSequenceTitle"/>
+                                <button type="button" ng-click="clear()">Clear</button>
+                            </div>
+                            <div style="float: right;display: inline-block">
+                                <button type="button" ng-click="submit()">Submit</button>
+                            </div>
+                        </div>
+                        <br/><br />
+                        <div>
+                            <textarea ck-editor ng-model="controlSequenceDescription"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='acceptanceRequirementGrid' kendo-grid k-on-change='acceptanceRequirementChanged(kendoEvent)' k-options='acceptanceRequirementGridOptions' k-data-source='acceptanceRequirementGridOptions.dataSource'></div>
+                        <br/>
+                        <div>
+                            <div style="float: left;display: inline-block">
+                                Title:
+                                <input type="text" id="acceptanceRequirementTitle" ng-model="acceptanceRequirementTitle"/>
+                                <button type="button" ng-click="clearAcceptanceRequirement()">Clear</button>
+                            </div>
+                            <div style="float: right;display: inline-block">
+                                <button type="button" ng-click="submitAcceptanceRequirement()">Submit</button>
+                            </div>
+                        </div>
+                        <br/><br />
+                        <div>
+                            <textarea ck-editor ng-model="acceptanceRequirementDescription"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='commissioningRequirementGrid' kendo-grid k-on-change='commissioningRequirementChanged(kendoEvent)' k-options='commissioningRequirementGridOptions' k-data-source='commissioningRequirementGridOptions.dataSource'></div>
+                        <br/>
+                        <div>
+                            <div style="float: left;display: inline-block">
+                                Title:
+                                <input type="text" id="commissioningRequirementTitle" ng-model="commissioningRequirementTitle"/>
+                                <button type="button" ng-click="clearCommissioningRequirement()">Clear</button>
+                            </div>
+                            <div style="float: right;display: inline-block">
+                                <button type="button" ng-click="submitCommissioningRequirement()">Submit</button>
+                            </div>
+                        </div>
+                        <br/><br />
+                        <div>
+                            <textarea ck-editor ng-model="commissioningRequirementDescription"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='functionalTestsGrid' kendo-grid k-on-change='functionalTestsChanged(kendoEvent)' k-options='functionalTestsGridOptions' k-data-source='functionalTestsGridOptions.dataSource'></div>
+                        <br/>
+                        <div>
+                            <div style="float: left;display: inline-block">
+                                Title:
+                                <input type="text" id="functionalTestTitle" ng-model="functionalTestTitle"/>
+                                <button type="button" ng-click="clearFunctionalTest()">Clear</button>
+                            </div>
+                            <div style="float: right;display: inline-block">
+                                <button type="button" ng-click="submitFunctionalTest()">Submit</button>
+                            </div>
+                        </div>
+                        <br/><br />
+                        <div>
+                            <textarea ck-editor ng-model="functionalTestDescription"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='demandResponseGrid' kendo-grid k-on-change='demandResponseChanged(kendoEvent)' k-options='demandResponseGridOptions' k-data-source='demandResponseGridOptions.dataSource'></div>
+                        <br/>
+                        <div>
+                            <div style="float: left;display: inline-block">
+                                Title:
+                                <input type="text" id="demandResponseTitle" ng-model="demandResponseTitle"/>
+                                <button type="button" ng-click="clearDemandResponse()">Clear</button>
+                            </div>
+                            <div style="float: right;display: inline-block">
+                                <button type="button" ng-click="submitDemandResponse()">Submit</button>
+                            </div>
+                        </div>
+                        <br/><br />
+                        <div>
+                            <textarea ck-editor ng-model="demandResponseDescription"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='loadCurtailmentGrid' kendo-grid k-on-change='loadCurtailmentChanged(kendoEvent)' k-options='loadCurtailmentGridOptions' k-data-source='loadCurtailmentGridOptions.dataSource'></div>
+                        <br/>
+                        <div>
+                            <div style="float: left;display: inline-block">
+                                Title:
+                                <input type="text" id="loadCurtailmentTitle" ng-model="loadCurtailmentTitle"/>
+                                <button type="button" ng-click="clearLoadCurtailment()">Clear</button>
+                            </div>
+                            <div style="float: right;display: inline-block">
+                                <button type="button" ng-click="submitLoadCurtailment()">Submit</button>
+                            </div>
+                        </div>
+                        <br/><br />
+                        <div>
+                            <textarea ck-editor ng-model="loadCurtailmentDescription"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='maintenanceRequirementGrid' kendo-grid k-on-change='maintenanceRequirementChanged(kendoEvent)' k-options='maintenanceRequirementGridOptions' k-data-source='maintenanceRequirementGridOptions.dataSource'></div>
+                        <br/>
+                        <div>
+                            <div style="float: left;display: inline-block">
+                                Title:
+                                <input type="text" id="maintenanceRequirementTitle" ng-model="maintenanceRequirementTitle"/>
+                                <button type="button" ng-click="clearMaintenanceRequirement()">Clear</button>
+                            </div>
+                            <div style="float: right;display: inline-block">
+                                <button type="button" ng-click="submitMaintenanceRequirement()">Submit</button>
+                            </div>
+                        </div>
+                        <br/><br />
+                        <div>
+                            <textarea ck-editor ng-model="maintenanceRequirementDescription"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='projectRequirementGrid' kendo-grid k-on-change='projectRequirementChanged(kendoEvent)' k-options='projectRequirementGridOptions' k-data-source='projectRequirementGridOptions.dataSource'></div>
+                        <br/>
+                        <div>
+                            <div style="float: left;display: inline-block">
+                                Title:
+                                <input type="text" id="projectRequirementTitle" ng-model="projectRequirementTitle"/>
+                                <button type="button" ng-click="clearProjectRequirement()">Clear</button>
+                            </div>
+                            <div style="float: right;display: inline-block">
+                                <button type="button" ng-click="submitProjectRequirement()">Submit</button>
+                            </div>
+                        </div>
+                        <br/><br />
+                        <div>
+                            <textarea ck-editor ng-model="projectRequirementDescription"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='responsibilityGrid' kendo-grid k-on-change='responsibilityChanged(kendoEvent)' k-options='responsibilityGridOptions' k-data-source='responsibilityGridOptions.dataSource'></div>
+                        <br/>
+                        <div>
+                            <div style="float: left;display: inline-block">
+                                Title:
+                                <input type="text" id="responsibilityTitle" ng-model="responsibilityTitle"/>
+                                <button type="button" ng-click="clearResponsibility()">Clear</button>
+                            </div>
+                            <div style="float: right;display: inline-block">
+                                <button type="button" ng-click="submitResponsibility()">Submit</button>
+                            </div>
+                        </div>
+                        <br/><br />
+                        <div>
+                            <textarea ck-editor ng-model="responsibilityDescription"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='issueGrid' kendo-grid k-on-change='issueChanged(kendoEvent)' k-options='issueGridOptions' k-data-source='issueGridOptions.dataSource'></div>
+                    </div>
+                    <div>
+                        <br/>
+                        <div id='taskGrid' kendo-grid k-on-change='taskChanged(kendoEvent)' k-options='taskGridOptions' k-data-source='taskGridOptions.dataSource'></div>
+                    </div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>

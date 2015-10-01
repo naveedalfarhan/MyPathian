@@ -1,0 +1,30 @@
+<div class="container">
+    <p>Upload group data</p>
+    <div ng-switch="page">
+        <div ng-switch-when="selectGroup">
+            <p ng-hide="model.group">(none selected)</p>
+            <p ng-show="model.group" ng-bind="model.group.name"></p>
+            <div style="max-height:400px;overflow-y:scroll">
+                <div group-tree selection-style="single" k-options="groupTreeOptions" ng-model="model.group"></div>
+            </div>
+            <button class="btn btn-primary" ng-click="changePage('selectAccount')" ng-disabled="!model.group">Next</button>
+        </div>
+        <div ng-switch-when="selectAccount">
+            <p><strong>Group: </strong><span ng-bind="model.group.name"></span></p>
+            <div single-picker="model.account" single-picker-options="accountGridOptions" ng-required="true" single-picker-key-prop="id" single-picker-caption-prop="name"></div>
+            <div>
+                <button class="btn btn-default" ng-click="changePage('selectGroup')">Previous</button>
+                <button class="btn btn-primary" ng-click="changePage('selectFile')" ng-disabled="!model.account">Next</button>
+            </div>
+        </div>
+        <div ng-switch-when="selectFile">
+            <input name="file"
+               type="file"
+               kendo-upload
+               k-async="uploadAsyncProps"
+               k-multiple="false"
+               k-success="uploadSuccess"
+               />
+        </div>
+    </div>
+</div>

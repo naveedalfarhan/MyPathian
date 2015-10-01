@@ -1,0 +1,65 @@
+﻿<style type="text/css">
+    .k-pane .k-treeview {
+        height: 100%
+    }
+</style>
+<div class="padded-container">
+    <p><a href="#/admin/components/structure" ng-show="userPermissions['componentStructureTree']">Structure Tree</a></p>
+    <p><a href="#/admin/components/mapping" ng-show="userPermissions['componentMappingTree']">Mapping Tree</a></p>
+    <p><a href='#/admin/components/manager'>Manager</a></p>
+    <p><a href='#/admin/components/upload'>Upload spreadsheet</a></p>
+
+    <div kendo-splitter k-orientation="'horizontal'" k-panes="[{collapsible: true, size: '35%'}, { collapsible: false, size: '65%'}]" style="height:600px">
+        <div>
+            <div component-structure-tree k-options="structureTreeOptions" edit="false" kendo-draggable="structureTreeDragOptions"></div>
+        </div>
+        <div>
+            <div component-mapping-tree k-options="mappingTreeOptions"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="treeErrorModal.html">
+    <div class="modal-header">
+        <h3>Error</h3>
+    </div>
+    <div class="modal-body">
+        <p>There was an error adding the specified component to the tree.</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="componentRemove.html">
+    <div class="modal-header">
+        <h3>Remove component</h3>
+    </div>
+    <div class="modal-body">
+        <h4>Are you sure you want to remove this component?</h4>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Num</label>
+                <div class="col-md-4">
+                    <p ng-bind="component.num"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Description</label>
+                <div class="col-md-4">
+                    <p ng-bind="component.description"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-danger" ng-click="submit()">Submit</button>
+    </div>
+</script>

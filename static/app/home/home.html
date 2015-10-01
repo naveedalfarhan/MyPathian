@@ -1,0 +1,64 @@
+﻿<div class="container">
+    <p ng-show="global.user === null">Welcome to Pathian!</p>
+    <div class="col-md-12" ng-if="global.user !== null">
+        <div ng-switch="global.userPermissions['dashboard']">
+            <div ng-switch-when="false">Welcome, {{global.user.username}}!</div>
+            <div ng-switch-when="true">
+                <div class="col-md-12">
+                    <ul notification-list='user_id'></ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div dashboard-chart model="model"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="mAccountType">Account Type:</label>
+                                <div class="col-md-3">
+                                    <select id="mAccountType" ng-model="model.account_type">
+                                        <option value="all" selected="selected">All</option>
+                                        <option value="electric">Electric</option>
+                                        <option value="gas">Gas</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="mBenchmarkYear">Benchmark Year:</label>
+                                <div class="col-md-3">
+                                    <select id="mBenchmarkYear" ng-model="model.benchmark_year" ng-options="item as item for item in benchmark_year_list"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="mGroup">Group:</label>
+                                <div class="col-md-3">
+                                    <select id="mGroup" ng-options="item.id as item.name for item in child_groups" ng-model="model.selected_group"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div dashboard-table="model"></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <h4>Quick Reports</h4>
+                        <select ng-model="selectedReport" class="col-md-12" ng-change="runReport(selectedReport)" ng-options="item.id as item.name for item in savedReports">
+                            <option value="">--- Select a Quick Report ---</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <h4>Issues List</h4>
+                        <div kendo-grid k-options="issuesGridOptions.options" k-data-source="issuesGridOptions.dataSource"></div>
+                    </div>
+                    <div class="row">
+                        <h4>Task List</h4>
+                        <div kendo-grid k-options="tasksGridOptions.options" k-data-source="tasksGridOptions.dataSource"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p ng-show="global.user === null"><a href="#/login">Login</a></p>
+</div>

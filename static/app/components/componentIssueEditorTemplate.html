@@ -1,0 +1,36 @@
+<div class="modal-body">
+    <fieldset>
+        <legend ng-bind="caption"></legend>
+        <form name="forms.issueForm">
+            <div class="alert alert-info" role="alert">* Required Field.</div>
+            <div class="form-group">
+                <input placeholder="* Title" title="Title" class="col-md-6 form-control input-md pat-no-max-width" id="mTitle" ng-model="model.title" required>
+                <div class="clear"></div>
+            </div>
+            <div class="form-group">
+                <select id="type" ng-model="model.type_id" ng-options="o.id as o.name for o in viewModel.types" class="form-control input-md pat-no-max-width" required>
+                    <option style="display:none" value="">* Select a type...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="status" ng-model="model.status_id" ng-options="o.id as o.name for o in viewModel.statuses" class="form-control input-md pat-no-max-width" required>
+                    <option style="display:none" value="">* Select a status...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="priority" ng-model="model.priority_id" ng-options="o.id as o.name for o in viewModel.priorities" class="form-control input-md pat-no-max-width" required>
+                    <option style="display:none" value="">* Select a priority...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div>
+                    <textarea ck-editor ng-model="model.description"></textarea>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="submit()">Submit</button>
+</div>

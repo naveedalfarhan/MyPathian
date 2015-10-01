@@ -1,0 +1,101 @@
+<div class="padded-container">
+    <div class="row">
+        <div class="col-md-5">
+            <div style="border: thin solid darkgray; max-height: 150px; min-height:150px;overflow: scroll;">
+                <ul>
+                    <li style="list-style: none" ng-repeat="node in nodes.selectedNodes" ng-bind="node.name"></li>
+                </ul>
+            </div>
+            <div style="border: thin solid darkgray; max-height: 450px; overflow: scroll;">
+                <div component-reporting-tree ng-model="nodes.selectedNodes" selection-style="multiple" options="treeOptions"></div>
+            </div>
+            <div id="pointGrid"></div>
+        </div>
+        <div class="col-md-7">
+            <form ng-submit="submit()" class="form-horizontal">
+                <p class="alert alert-danger" ng-show="showErrorMessage" ng-bind="errorMessage"></p>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="rReportYear">Report Year</label>
+                    <div class="col-md-3">
+                        <input id="rReportYear" ng-model="model.report_year" class="form-control input-md"/>
+                    </div>
+                    <label class="col-md-3 control-label" for="rStartMonth">Start Month</label>
+                    <div class="col-md-3">
+                        <select id="rStartMonth" ng-model="model.start_month" class="form-control">
+                            <option selected="selected" value='1'>January</option>
+                            <option value='2'>February</option>
+                            <option value='3'>March</option>
+                            <option value='4'>April</option>
+                            <option value='5'>May</option>
+                            <option value='6'>June</option>
+                            <option value='7'>July</option>
+                            <option value='8'>August</option>
+                            <option value='9'>September</option>
+                            <option value='10'>October</option>
+                            <option value='11'>November</option>
+                            <option value='12'>December</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="rBenchmarkYear">Benchmark Year</label>
+                    <div class="col-md-3">
+                        <input id="rBenchmarkYear" ng-model="model.benchmark_year" class="form-control input-md"/>
+                    </div>
+                    <label class="col-md-3 control-label" for="rEndMonth">End Month</label>
+                    <div class="col-md-3">
+                        <select id="rEndMonth" ng-model="model.end_month" class="form-control">
+                            <option value='1'>January</option>
+                            <option value='2'>February</option>
+                            <option value='3'>March</option>
+                            <option value='4'>April</option>
+                            <option value='5'>May</option>
+                            <option value='6'>June</option>
+                            <option value='7'>July</option>
+                            <option value='8'>August</option>
+                            <option value='9'>September</option>
+                            <option value='10'>October</option>
+                            <option value='11'>November</option>
+                            <option selected="selected" value='12'>December</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <button type="button" class="btn btn-primary col-md-6" ng-click="exportToPdf()">Export to PDF</button>
+                                <button type="submit" class="btn btn-primary col-md-6" value="submit">Run Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+            </form>
+        </div>
+    </div>
+    <div class="row" ng-if="componentDropdown.length > 0">
+        <div class="col-md-12">
+            <select ng-model="chartModel.selected_component" ng-options="item.id as item.name for item in componentDropdown"></select>
+        </div>
+    </div>
+    <div class="row" ng-if="chartModel">
+        <div class="col-md-12" component-difference-chart chart-model="chartModel" ng-show="chartModel"></div>
+    </div>
+    <div class="row" ng-if="tableModel">
+        <div class="col-md-12" component-comparison-table="tableModel"></div>
+    </div>
+</div>
+
+<div id="loader" class="dim" ng-show="exporting">
+    <span class="load" ng-hide="pdfurl">
+        Loading...<br/>
+        <img class="load" src="/static/css/loadingGif.gif" alt="Loading..." height="150" width="150"/>
+    </span>
+    <div id="link" ng-show="pdfurl">
+        <a ng-href="{{pdfurl}}" target="_blank" ng-click="openPdf()">Click to open PDF</a>
+    </div>
+</div>

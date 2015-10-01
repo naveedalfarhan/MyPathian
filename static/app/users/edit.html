@@ -1,0 +1,113 @@
+﻿<fieldset class="container">
+    <form ng-submit="submit()" class="form-horizontal">
+        <p class="alert alert-danger" ng-show="message.length > 0" ng-bind="message"></p>
+        <fieldset>
+            <legend>Edit User</legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="userUsername">Username</label>
+                <div class="col-md-4">
+                    <input id="userUsername" ng-model="model.username" class="form-control input-md" ng-required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="userPassword">Password</label>
+                <div class="col-md-4">
+                    <input id="userPassword" type="password" ng-model="model.password" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="userActive">Active</label>
+                <div class="col-md-4">
+                    <input id="useractive" type="checkbox" ng-model="model.active"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="userExpiration">Expiration Date</label>
+                <div class="col-md-4">
+                    <input id="userExpiration" ng-model="model.expiration_date" ng-required="true" datepicker-popup="{{format}}" datepicker-options="dateOptions" class="form-control input-md"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="userRoles">Roles</label>
+                <div class="col-md-6">
+                    <div id="userRoles" multi-picker="model.roles" multi-picker-options="roleGridOptions" multi-picker-key-prop="id" multi-picker-caption-prop="name"></div>
+                </div>
+            </div>
+            <fieldset>
+                <legend>Contact Information</legend>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userFirstName">First Name</label>
+                    <div class="col-md-4">
+                        <input id="userFirstName" ng-model="model.first_name" class="form-control input-md"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userLastName">Last Name</label>
+                    <div class="col-md-4">
+                        <input id="userLastName" ng-model="model.last_name" class="form-control input-md"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userJobTitle">Job Title</label>
+                    <div class="col-md-4">
+                        <input id="userJobTitle" ng-model="model.job_title" class="form-control input-md"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userEmail">Email</label>
+                    <div class="col-md-4">
+                        <input id="userEmail" ng-model="model.email" class="form-control input-md"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userAddress">Address</label>
+                    <div class="col-md-4">
+                        <input id="userAddress" ng-model="model.address" class="form-control input-md"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userCity">City</label>
+                    <div class="col-md-4">
+                        <input id="userCity" ng-model="model.city" class="form-control input-md"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userState">State</label>
+                    <div class="col-md-4">
+                        <input id="userState" ng-model="model.state" class="form-control input-md"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userZip">Zip</label>
+                    <div class="col-md-4">
+                        <input id="userZip" ng-model="model.zip" class="form-control input-md"/>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Group Information</legend>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userPrimaryGroup">Primary Group:</label>
+                    <div class="col-md-4">
+                        <div id="userPrimaryGroup" single-picker="model.primary_group" single-picker-options="groupGridOptions" single-picker-key-prop="id" single-picker-caption-prop="name"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="userGroupList">Groups:</label>
+                    <div class="col-md-6">
+                        <div id="userGroupList" multi-picker="model.groups" multi-picker-options="groupGridOptions" multi-picker-key-prop="id" multi-picker-caption-prop="name"></div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="cancel()" class="btn btn-default" value="Cancel">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</fieldset>

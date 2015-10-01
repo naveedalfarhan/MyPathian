@@ -1,0 +1,34 @@
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Electric</th>
+                <th>Gas</th>
+                <th>State</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="r in submissions">
+                <td ng-bind="r.name"></td>
+                <td ng-bind="r.email"></td>
+                <td>
+                    <div ng-show="r.electricAccount.enabled">Yes</div>
+                    <div ng-hide="r.electricAccount.enabled">No</div>
+                </td>
+                <td>
+                    <div ng-show="r.gasAccount.enabled">Yes</div>
+                    <div ng-hide="r.gasAccount.enabled">No</div>
+                </td>
+                <td ng-bind="r.processing_state"></td>
+                <td>
+                    <div ng-show="r.processing_state == 'submitted'">
+                        <button class="btn btn-primary" ng-click="process(r)">Process</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

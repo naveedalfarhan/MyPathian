@@ -1,0 +1,12 @@
+﻿<div class="container">
+    <p ng-show="showLoginError" ng-bind="loginErrorMessage" class="alert alert-danger"></p>
+    <form class="form-signin" role="form" ng-submit="submitLogin()">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input ng-model="username" type="text" class="form-control" placeholder="Username" required autofocus>
+        <input ng-model="password" type="password" class="form-control" placeholder="Password" required>
+        <label class="checkbox">
+            <input ng-model="rememberMe" type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button ng-clickclass="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
